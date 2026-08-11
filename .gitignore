@@ -1,0 +1,23 @@
+# Secrets — Supabase connection string and service key land here
+.env
+.env.*
+!.env.example
+
+# nflverse raw parquet cache (regenerable, large)
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# OS
+Thumbs.db
+.DS_Store
+
+docs/
+
+.claude/
