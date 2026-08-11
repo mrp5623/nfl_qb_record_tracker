@@ -1,0 +1,2790 @@
+{
+  "_comment": "Record-mode color thresholds extracted from NFL_QB_Sheet.xlsx conditional formatting. prorate_threshold = threshold / prorate_per_games * games_played. Tiers are ordered best-to-worst; apply the first matching tier.",
+  "views": {
+    "season_REG": {
+      "granularity": "season",
+      "season_type": "REG",
+      "prorate_denominator_games": 17,
+      "stats": {
+        "CMP": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 490.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 450.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 350.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 285.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 170.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 1.0,
+              "prorate_per_games": 17
+            }
+          ]
+        },
+        "ATT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 733.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 700.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 540.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 445.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 275.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 1.0,
+              "prorate_per_games": 17
+            }
+          ]
+        },
+        "CMP%": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 74.4
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 72.5
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 67.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 63.25
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 60.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 38.6
+            }
+          ]
+        },
+        "YDS": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 5477.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 5000.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 3900.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 3000.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1800.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 17
+            }
+          ]
+        },
+        "Y/C": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 16.7
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 14.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 12.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 11.3
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 10.5
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 0.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "Y/A": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 9.6
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 9.3
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 7.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 6.9
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 6.3
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 0.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "PTD": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 55.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 50.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 28.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 18.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 10.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 1.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 17
+            }
+          ]
+        },
+        "TD%": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 9.9
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 5.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 4.4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 3.2
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 0.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "RTG": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 122.5
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 98.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 85.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 75.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 52.8
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "QBR": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 87.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 65.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 52.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 40.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 1.9
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "INT": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "lte",
+              "threshold": 2.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 11.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 16.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 21.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "lte",
+              "threshold": 30.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "record",
+              "color": "dark_red",
+              "op": "gt",
+              "threshold": 35.0,
+              "prorate_per_games": 17
+            }
+          ]
+        },
+        "INT%": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "lte",
+              "threshold": 0.3
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "lte",
+              "threshold": 0.5
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 2.4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 3.5
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 4.5
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "lte",
+              "threshold": 10.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gt",
+              "threshold": 10.0
+            }
+          ]
+        },
+        "TD/INT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 14.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 3.2
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 2.2
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 0.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "SCK%": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "lte",
+              "threshold": 1.72
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 5.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 7.5
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 10.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "lt",
+              "threshold": 15.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 15.0
+            }
+          ]
+        },
+        "RYDS": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 1206.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 1000.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 400.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 200.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 75.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "lte",
+              "threshold": 100.0,
+              "prorate_per_games": 17
+            }
+          ]
+        },
+        "RTD": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 15.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 3.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 2.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "lte",
+              "threshold": 1.0,
+              "prorate_per_games": 17
+            }
+          ]
+        },
+        "RATT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 176.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 160.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 55.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 30.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 6.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "lte",
+              "threshold": 25.0,
+              "prorate_per_games": 17
+            }
+          ]
+        },
+        "RY/RA": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 8.4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 4.8
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 4.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 3.1
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": -10.0
+            }
+          ]
+        },
+        "FUM": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "lte",
+              "threshold": 0.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 4.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 8.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 12.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "lte",
+              "threshold": 23.0,
+              "prorate_per_games": 17
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gt",
+              "threshold": 23.0,
+              "prorate_per_games": 17
+            }
+          ]
+        }
+      }
+    },
+    "week_REG": {
+      "granularity": "week",
+      "season_type": "REG",
+      "prorate_denominator_games": null,
+      "stats": {
+        "CMP": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 48.0
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 40.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 29.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 21.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 17.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "ATT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 70.0
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 60.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 42.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 33.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 25.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 1.0
+            }
+          ]
+        },
+        "CMP%": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 100.0
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 90.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 72.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 65.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 58.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 30.0
+            }
+          ]
+        },
+        "YDS": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 554.0
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 500.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 300.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 240.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 180.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 1.0
+            }
+          ]
+        },
+        "Y/C": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 25.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 12.75
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 11.25
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 9.75
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 5.0
+            }
+          ]
+        },
+        "Y/A": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 22.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 8.45
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 7.15
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 6.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 3.0
+            }
+          ]
+        },
+        "PTD": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 7.0
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 5.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 3.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 2.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": -1.0
+            }
+          ]
+        },
+        "TD%": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 50.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 6.75
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 4.25
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 2.25
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "RTG": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 158.3
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 150.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 107.5
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 90.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 75.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 40.0
+            }
+          ]
+        },
+        "INT": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 0.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "lte",
+              "threshold": 3.0
+            },
+            {
+              "tier": "record",
+              "color": "dark_red",
+              "op": "gt",
+              "threshold": 6.0
+            }
+          ]
+        },
+        "INT%": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 1.5
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 3.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 4.5
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "lte",
+              "threshold": 18.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gt",
+              "threshold": 18.0
+            }
+          ]
+        },
+        "TD/INT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 4.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 2.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "SCK%": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 3.5
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 7.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 10.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "lt",
+              "threshold": 15.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gt",
+              "threshold": 15.0
+            }
+          ]
+        },
+        "RYDS": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 178.0
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 100.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 30.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 15.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 5.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "gte",
+              "threshold": -1.0
+            }
+          ]
+        },
+        "RTD": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 4.0
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 3.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 2.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": -1.0
+            }
+          ]
+        },
+        "RATT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "record",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 26.0
+            },
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 20.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 4.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 2.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "RY/RA": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 17.3
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 6.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 4.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 2.5
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            },
+            {
+              "tier": "dark_red",
+              "color": "dark_red",
+              "op": "lt",
+              "threshold": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "season_POST": {
+      "granularity": "season",
+      "season_type": "POST",
+      "prorate_denominator_games": 4,
+      "stats": {
+        "CMP": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 106.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 91.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 66.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 41.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 4
+            }
+          ]
+        },
+        "ATT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 163.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 141.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 101.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 66.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 4
+            }
+          ]
+        },
+        "CMP%": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 80.6
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 68.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 63.6
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 58.1
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "YDS": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 1219.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 1101.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 801.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 501.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 4
+            }
+          ]
+        },
+        "Y/C": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 23.9
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 13.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 12.1
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 10.6
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "Y/A": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 13.4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 8.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 7.6
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 6.6
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "PTD": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 11.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 10.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 8.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 5.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 4
+            }
+          ]
+        },
+        "TD%": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 14.5
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 6.9
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 5.3
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 3.9
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "RTG": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 149.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 105.1
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 92.1
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 78.1
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "INT": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 1.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 2.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 4.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 4.0,
+              "prorate_per_games": 4
+            }
+          ]
+        },
+        "INT%": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 1.5
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 2.5
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 3.5
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 3.5
+            }
+          ]
+        },
+        "TD/INT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 14.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 4.1
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 2.6
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1.6
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "SCK%": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 4.5
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 6.5
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 8.5
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 8.5
+            }
+          ]
+        },
+        "RYDS": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 264.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 101.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 56.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 21.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": -10.0,
+              "prorate_per_games": 4
+            }
+          ]
+        },
+        "RTD": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 5.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 2.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 1.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 4
+            }
+          ]
+        },
+        "RATT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 35.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 21.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 13.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 7.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0,
+              "prorate_per_games": 4
+            }
+          ]
+        },
+        "RY/RA": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 12.1
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 6.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 5.1
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 3.6
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": -5.0
+            }
+          ]
+        },
+        "FUM": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 1.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 2.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 4.0,
+              "prorate_per_games": 4
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 4.0,
+              "prorate_per_games": 4
+            }
+          ]
+        }
+      }
+    },
+    "week_POST": {
+      "granularity": "week",
+      "season_type": "POST",
+      "prorate_denominator_games": null,
+      "stats": {
+        "CMP": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 47.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 27.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 22.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 17.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "ATT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 68.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 43.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 35.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 28.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "CMP%": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 80.6
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 68.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 63.6
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 58.1
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "YDS": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 505.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 311.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 251.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 191.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "Y/C": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 23.5
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 13.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 12.1
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 10.6
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "Y/A": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 16.24
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 8.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 7.6
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 6.6
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "PTD": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 6.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 4.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 3.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "TD%": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 20.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 6.9
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 5.3
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 3.9
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "RTG": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 158.3
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 105.1
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 92.1
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 78.1
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "INT": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 0.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 2.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 2.0
+            }
+          ]
+        },
+        "INT%": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 1.5
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 2.5
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 3.5
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 3.5
+            }
+          ]
+        },
+        "TD/INT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 4.1
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 2.6
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 1.6
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "SCK%": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 4.5
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 6.5
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 8.5
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 8.5
+            }
+          ]
+        },
+        "RYDS": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 181.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 39.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 23.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 11.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": -10.0
+            }
+          ]
+        },
+        "RTD": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 3.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 2.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "RATT": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 20.0
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 7.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 5.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 3.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": 0.0
+            }
+          ]
+        },
+        "RY/RA": {
+          "direction": "higher_is_better",
+          "tiers": [
+            {
+              "tier": "dark_green",
+              "color": "dark_green",
+              "op": "gte",
+              "threshold": 14.9
+            },
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "gte",
+              "threshold": 6.6
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "gte",
+              "threshold": 5.1
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "gte",
+              "threshold": 3.6
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gte",
+              "threshold": -10.0
+            }
+          ]
+        },
+        "FUM": {
+          "direction": "lower_is_better",
+          "tiers": [
+            {
+              "tier": "green",
+              "color": "green",
+              "op": "lte",
+              "threshold": 0.0
+            },
+            {
+              "tier": "yellow",
+              "color": "yellow",
+              "op": "lte",
+              "threshold": 1.0
+            },
+            {
+              "tier": "orange",
+              "color": "orange",
+              "op": "lte",
+              "threshold": 2.0
+            },
+            {
+              "tier": "red",
+              "color": "red",
+              "op": "gt",
+              "threshold": 2.0
+            }
+          ]
+        }
+      }
+    }
+  }
+}
