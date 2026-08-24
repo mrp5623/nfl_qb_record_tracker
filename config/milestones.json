@@ -1,6 +1,13 @@
 {
   "_comment": "Hand-picked threshold overrides (parent spec 7.3). Applied on top of the generated percentiles by thresholds.apply_milestones(). Two kinds of entry live here. SNAP-TO-ROUND: the computed percentile already landed near a number a person would say, so it is nudged to that number - elite still means roughly the top 10% of qualified seasons, it just reads as 4500 instead of 4568. HAND-SET LADDER: the stat has too few distinct values for percentiles to produce seven distinct tiers (weekly touchdowns are 0-7, and 0 is most games), so a human picks what each count means from a box score. Every override records source=milestone and a note; both are internal provenance and must never render in the UI (7.4). Stats with no folk benchmark are deliberately absent and stay fully percentile-derived.",
 
+  "_collapsed_comment": "Stats exempt from the strict-monotonicity rule in thresholds.validate(), because their data cannot support seven distinct tiers at all. rushing_tds takes four distinct values in the weekly views across all of 1999-2025 (0,1,2,3) and five in season_POST, and no choice of thresholds fits seven bins into four values. Fractional cutoffs like 0.5 and 0.25 would be numerically distinct but both mean 'at least 1 TD' for an integer stat, so the tiers would be dead while looking fine -- which is how the legacy gaps got in. Declared here by hand rather than detected automatically, so that a tie caused by an actual mistake still fails the build.",
+  "_collapsed": {
+    "week_REG": ["rushing_tds"],
+    "week_POST": ["rushing_tds"],
+    "season_POST": ["rushing_tds"]
+  },
+
   "views": {
     "season_REG": {
       "passing_yards": {

@@ -464,6 +464,147 @@ def apply_milestones(thresholds: dict, milestones: dict) -> dict:
     return result
 
 
+class ThresholdValidationError(Exception):
+    """Raised when a threshold document violates parent spec 7.5.
+
+    Carries every violation found, not just the first, so one run tells you
+    everything that is wrong with a generated file.
+    """
+
+
+# The seven tiers in the order they are checked at grading time: best first,
+# `record` above the ladder, `worst` as the unconditional floor.
+TIER_ORDER: tuple[Tier, ...] = (
+    Tier.RECORD,
+    Tier.ELITE,
+    Tier.GOOD,
+    Tier.AVERAGE,
+    Tier.BELOW,
+    Tier.POOR,
+    Tier.WORST,
+)
+LADDER: tuple[Tier, ...] = TIER_ORDER[1:-1]
+
+
+def _validate_stat(view: str, name: str, stat: Stat, entry: dict) -> list[str]:
+    """Every 7.5 violation in one stat's tiers."""
+    problems: list[str] = []
+    where = f"{view}.{name}"
+    tiers = {t["tier"]: t for t in entry.get("tiers", [])}
+
+    # Rule 1 -- completeness. All seven tiers, every stat, every view (D5).
+    # Legacy season_REG RTD jumped record -> good with no elite at all, and
+    # week_REG INT carried only four of the seven.
+    missing = [str(t) for t in TIER_ORDER if str(t) not in tiers]
+    if missing:
+        problems.append(f"{where}: missing tiers {missing}")
+        return problems
+
+    # Rule 2 -- the catch-all. `worst` must fire unconditionally.
+    #
+    # This is the rule that makes gaps structurally impossible, and it is the
+    # single most important one here. Legacy season_REG CMP% bottomed out at
+    # `poor: gte 38.6` with nothing beneath it, so a 30% completion season
+    # matched no tier and rendered uncoloured. Legacy season_REG INT had the
+    # same hole in the middle: `poor: lte 30` then `record: gt 35` left 31-35
+    # matching nothing at all.
+    worst = tiers[str(Tier.WORST)]
+    if worst.get("op") != "always" or worst.get("threshold") is not None:
+        problems.append(
+            f"{where}: worst must be op='always' with threshold=null so every "
+            f"value matches some tier; got op={worst.get('op')!r} "
+            f"threshold={worst.get('threshold')!r}"
+        )
+
+    # Rule 3 -- direction consistency.
+    #
+    # Legacy season_REG RYDS and RATT both ended with `dark_red: lte ...` inside
+    # an otherwise higher-is-better ladder, which is what made their bottom tier
+    # unreachable: `poor: gte 0` had already swallowed every non-negative value.
+    expected = _ladder_operator(stat.direction)
+    for tier in LADDER:
+        op = tiers[str(tier)].get("op")
+        if op != expected:
+            problems.append(
+                f"{where}.{tier}: op is {op!r} but {name} is {stat.direction}, "
+                f"so every ladder tier must use {expected!r}"
+            )
+    if tiers[str(Tier.RECORD)].get("op") != "gte":
+        problems.append(
+            f"{where}.record: op must be 'gte' -- the record is the most extreme "
+            f"value observed, in either direction"
+        )
+
+    values = [tiers[str(t)].get("threshold") for t in LADDER]
+    if any(v is None for v in values):
+        problems.append(f"{where}: ladder tiers must all carry a threshold")
+        return problems
+
+    # Rule 4 -- monotonicity, strictly. A tie makes the lower tier unreachable,
+    # because grading applies the first matching tier and never reaches it.
+    higher = stat.direction is Direction.HIGHER_IS_BETTER
+    for i in range(len(LADDER) - 1):
+        better, worse = values[i], values[i + 1]
+        ok = better > worse if higher else better < worse
+        if not ok:
+            problems.append(
+                f"{where}: {LADDER[i]} ({better}) and {LADDER[i + 1]} ({worse}) "
+                f"are out of order or tied; each rung must be strictly harder to "
+                f"reach than the one below it"
+            )
+
+    # Rule 5 -- the record sits beyond the ladder's best rung.
+    record = tiers[str(Tier.RECORD)]["threshold"]
+    extreme = values[0] if stat.direction is Direction.HIGHER_IS_BETTER else values[-1]
+    if record is not None and record < extreme:
+        problems.append(
+            f"{where}: record ({record}) is less extreme than the ladder's top "
+            f"rung ({extreme}), so no value can ever reach it"
+        )
+    return problems
+
+
+def validate(thresholds: dict, collapsed: dict[str, list[str]] | None = None) -> None:
+    """Raise unless `thresholds` satisfies every parent 7.5 rule.
+
+    `collapsed` names stats exempt from the strict-monotonicity rule, as
+    `{view: [stat, ...]}`. The exemption exists for stats whose data cannot
+    support seven distinct tiers -- weekly rushing_tds takes four distinct values
+    across its whole history, and no choice of thresholds fits seven bins into
+    four values. It has to be written down by a person in milestones.json rather
+    than detected and waved through, so that a tie caused by a real mistake still
+    fails the build.
+    """
+    collapsed = collapsed or {}
+    problems: list[str] = []
+
+    for view in VIEWS:
+        if view not in thresholds.get("views", {}):
+            problems.append(f"missing view {view!r}")
+            continue
+        stats = thresholds["views"][view]["stats"]
+        exempt = set(collapsed.get(view, []))
+
+        for name, stat in STATS.items():
+            if view not in stat.views:
+                continue
+            # Completeness across views. Legacy defined FUM for three views and
+            # simply omitted it from week_REG.
+            if name not in stats:
+                problems.append(f"{view}: missing stat {name!r}")
+                continue
+            found = _validate_stat(view, name, stat, stats[name])
+            if name in exempt:
+                found = [p for p in found if "out of order or tied" not in p]
+            problems.extend(found)
+
+    if problems:
+        raise ThresholdValidationError(
+            f"{len(problems)} threshold violation(s):\n  "
+            + "\n  ".join(problems)
+        )
+
+
 def generate_all(conn: psycopg.Connection, as_of_season: int) -> dict:
     """The full section 7.4 document, all four views."""
     return {
