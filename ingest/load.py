@@ -17,6 +17,7 @@ Usage:
 
 import json
 import os
+from pathlib import Path
 from datetime import datetime
 
 import polars as pl
@@ -24,7 +25,8 @@ import psycopg
 from dotenv import load_dotenv
 from psycopg.types.json import Json
 
-from ingest import derive
+from ingest import derive, grade
+from ingest.registry import STATS
 
 # Columns we read out of the source frame, in the order the SQL below expects.
 # Keeping these next to the SQL makes a mismatch obvious.
@@ -191,6 +193,7 @@ SEASON_COLUMNS = [
     "games_played", "games_started", "wins", "losses", "ties",
     *STAT_COLUMN_MAP.values(),
     *EXTERNAL_COLUMNS_FWD, *DERIVED_COLUMNS_FWD, "sentinels",
+    "record_tiers", "season_percentiles",
     "is_final", "is_qualified",
 ]
 
@@ -199,8 +202,16 @@ WEEK_COLUMNS = [
     "team_abbr", "opponent_abbr", "result",
     *STAT_COLUMN_MAP.values(),
     *EXTERNAL_COLUMNS_FWD, *DERIVED_COLUMNS_FWD, "sentinels",
+    "record_tiers", "week_percentiles",
     "is_final", "is_qualified",
 ]
+
+# The grading columns are added after the frame is built (see add_grade_columns),
+# so the build step selects everything except them and the upsert selects the lot.
+SEASON_GRADE_COLUMNS = ["record_tiers", "season_percentiles"]
+WEEK_GRADE_COLUMNS = ["record_tiers", "week_percentiles"]
+SEASON_BUILD_COLUMNS = [c for c in SEASON_COLUMNS if c not in SEASON_GRADE_COLUMNS]
+WEEK_BUILD_COLUMNS = [c for c in WEEK_COLUMNS if c not in WEEK_GRADE_COLUMNS]
 
 QUALIFYING_ATTEMPTS_PER_GAME = 10
 
@@ -256,7 +267,7 @@ def build_season_rows(
         .join(qbr, on=["player_id", "season", "season_type"], how="left")
         .join(snaps, on=["player_id", "season", "season_type"], how="left")
     )
-    return add_derived_columns(joined).select(SEASON_COLUMNS)
+    return add_derived_columns(joined).select(SEASON_BUILD_COLUMNS)
 
 
 def build_week_rows(
@@ -306,7 +317,7 @@ def build_week_rows(
         .join(qbr, on=["player_id", "season", "season_type", "week"], how="left")
         .join(snaps, on=["player_id", "season", "season_type", "week"], how="left")
     )
-    return add_derived_columns(joined).select(WEEK_COLUMNS)
+    return add_derived_columns(joined).select(WEEK_BUILD_COLUMNS)
 
 
 def _upsert_sql(table: str, columns: list[str], key: list[str]) -> str:
@@ -351,6 +362,72 @@ def upsert_player_week(conn: psycopg.Connection, df: pl.DataFrame) -> int:
     with conn.cursor() as cur:
         cur.executemany(UPSERT_WEEK_SQL, rows)
     return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Task 24: grading backfill
+# ---------------------------------------------------------------------------
+
+
+def add_grade_columns(
+    df: pl.DataFrame, thresholds: dict, granularity: str
+) -> pl.DataFrame:
+    """Add `record_tiers` and the percentile column to a built frame.
+
+    Grading happens here, inside the normal build, rather than as a separate
+    UPDATE pass over the table. That is what makes it idempotent for free: the
+    tiers ride along in the same upsert as the numbers they describe, so there is
+    no window in which a row's stats and its grades disagree, and a rerun
+    recomputes both from the same inputs.
+
+    REG and POST are graded separately even though they share a table. They are
+    different views with different thresholds -- a 300-yard playoff game is not
+    measured against a 17-game regular season -- and grading them together would
+    quietly apply the regular-season ladder to both.
+    """
+    pct_column = "season_percentiles" if granularity == "season" else "week_percentiles"
+    partition = ["season", "season_type"]
+    if granularity == "week":
+        partition.append("week")
+
+    graded: list[pl.DataFrame] = []
+    for season_type in ("REG", "POST"):
+        part = df.filter(pl.col("season_type") == season_type)
+        if part.height == 0:
+            continue
+        view = thresholds["views"][f"{granularity}_{season_type}"]
+
+        percentiles = {
+            name: grade.performance_percentiles(part, STATS[name], partition)
+            for name in view["stats"]
+            if name in STATS and STATS[name].field in part.columns
+        }
+
+        tiers_json: list[str] = []
+        pct_json: list[str] = []
+        for i, row in enumerate(part.iter_rows(named=True)):
+            raw = row.get("sentinels") or "{}"
+            sentinels = json.loads(raw) if isinstance(raw, str) else raw
+            tiers_json.append(json.dumps(grade.grade_row(row, view, sentinels)))
+            # A sentinel cell gets neither a tier nor a percentile (parent 8.1).
+            pct_json.append(
+                json.dumps(
+                    {
+                        name: series[i]
+                        for name, series in percentiles.items()
+                        if name not in sentinels and series[i] is not None
+                    }
+                )
+            )
+
+        graded.append(
+            part.with_columns(
+                pl.Series("record_tiers", tiers_json),
+                pl.Series(pct_column, pct_json),
+            )
+        )
+
+    return pl.concat(graded, how="diagonal_relaxed")
 
 
 # ---------------------------------------------------------------------------
@@ -578,6 +655,14 @@ if __name__ == "__main__":
 
     season_rows = build_season_rows(season_stats, records, final, qbr_season, snap_season)
     week_rows = build_week_rows(week_stats, game_teams, final, qbr_week, snap_game)
+
+    thresholds_doc = json.loads(
+        (Path(__file__).parents[1] / "config" / "thresholds_v2025.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    season_rows = add_grade_columns(season_rows, thresholds_doc, "season")
+    week_rows = add_grade_columns(week_rows, thresholds_doc, "week")
 
     with get_connection() as conn:
         upsert_teams(conn, sources.fetch_teams())
