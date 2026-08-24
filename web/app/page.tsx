@@ -102,9 +102,14 @@ function pickView(raw: string | string[] | undefined): (typeof VIEWS)[number] {
     : "season_REG";
 }
 
+// These read the distinct-value views from schema3_index_views.sql, not the fact
+// tables. PostgREST caps responses at 1000 rows, so selecting `season` from all
+// 2,485 player_season rows returned only 2015 onward and the dropdown silently
+// lost fifteen seasons. A view that returns one row per distinct value cannot
+// hit that ceiling.
 async function loadSeasons(): Promise<number[]> {
   const { data, error } = await supabase
-    .from("player_season")
+    .from("season_index")
     .select("season")
     .order("season", { ascending: false });
   if (error) throw new Error(`Could not load seasons: ${error.message}`);
@@ -113,7 +118,7 @@ async function loadSeasons(): Promise<number[]> {
 
 async function loadWeeks(seasonType: string, season: number): Promise<number[]> {
   const { data, error } = await supabase
-    .from("player_week")
+    .from("week_index")
     .select("week")
     .eq("season", season)
     .eq("season_type", seasonType)
