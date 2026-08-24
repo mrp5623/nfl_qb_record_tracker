@@ -1,0 +1,352 @@
+[
+  {
+    "field": "completions",
+    "display": "CMP",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "attempts",
+    "display": "ATT",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "completion_pct",
+    "display": "CMP%",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "passing_yards",
+    "display": "YDS",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "yards_per_completion",
+    "display": "Y/C",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "yards_per_attempt",
+    "display": "Y/A",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "passing_tds",
+    "display": "PTD",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "td_pct",
+    "display": "TD%",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "passer_rating",
+    "display": "RTG",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "any_a",
+    "display": "ANY/A",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "qbr",
+    "display": "QBR",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 2006,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "interceptions",
+    "display": "INT",
+    "kind": "counting",
+    "direction": "lower_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "int_pct",
+    "display": "INT%",
+    "kind": "rate",
+    "direction": "lower_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "td_int_ratio",
+    "display": "TD/INT",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "sacks",
+    "display": "SCK",
+    "kind": "counting",
+    "direction": "lower_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "sack_yards",
+    "display": "SCK YDS",
+    "kind": "counting",
+    "direction": "lower_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "sack_pct",
+    "display": "SCK%",
+    "kind": "rate",
+    "direction": "lower_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "rushing_yards",
+    "display": "RYDS",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "rushing_tds",
+    "display": "RTD",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "rushing_attempts",
+    "display": "RATT",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "rush_yards_per_att",
+    "display": "RY/RA",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "fumbles",
+    "display": "FUM",
+    "kind": "counting",
+    "direction": "lower_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "total_tds",
+    "display": "TOT TD",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "total_yards",
+    "display": "TOT YDS",
+    "kind": "counting",
+    "direction": "higher_is_better",
+    "prorate": "games",
+    "era_from": 1999,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  },
+  {
+    "field": "snap_pct",
+    "display": "SNAP%",
+    "kind": "rate",
+    "direction": "higher_is_better",
+    "prorate": "none",
+    "era_from": 2013,
+    "views": [
+      "season_POST",
+      "season_REG",
+      "week_POST",
+      "week_REG"
+    ]
+  }
+]

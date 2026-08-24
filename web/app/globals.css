@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbfaf8;
+  --foreground: #1a1a19;
+  --surface: #ffffff;
+  --border: #e5e3de;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-table), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d0d0c;
+    --foreground: #e8e6e1;
+    --surface: #141413;
+    --border: #292826;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-table), ui-sans-serif, system-ui, sans-serif;
+  /* A stats table is unreadable without tabular figures -- proportional digits
+     make every column jitter as values change width. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* Performance mode paints cells from a continuous percentile ramp, computed in
+   percentileStyle(). The two custom properties are set inline per cell; this
+   rule decides which one the current colour scheme uses. */
+.pct-cell {
+  background-color: var(--pct-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .pct-cell {
+    background-color: var(--pct-dark);
+  }
+}

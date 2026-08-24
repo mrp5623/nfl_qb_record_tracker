@@ -81,3 +81,34 @@ def legacy_tier_to_semantic(name: str) -> Tier:
         case 'red': return Tier.POOR
         case 'dark_red': return Tier.WORST
         case _: raise ValueError(f"{name!r} is not a valid legacy tier name.")
+
+def as_json() -> list[dict]:
+    """The registry in a shape the web app can consume.
+
+    D6 makes this file the single definition of what a stat is. The frontend
+    needs the same list -- display name, ordering, direction -- and hand-copying
+    25 entries into TypeScript would mean two definitions that drift the first
+    time one is edited. Exporting instead keeps Python authoritative.
+    """
+    return [
+        {
+            "field": s.field,
+            "display": s.display,
+            "kind": str(s.kind),
+            "direction": str(s.direction),
+            "prorate": str(s.prorate),
+            "era_from": s.era_from,
+            "views": sorted(s.views),
+        }
+        for s in STATS.values()
+    ]
+
+
+if __name__ == "__main__":
+    import json
+    from pathlib import Path
+
+    target = Path(__file__).parents[1] / "web" / "lib" / "stats.generated.json"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(json.dumps(as_json(), indent=2) + "\n", encoding="utf-8")
+    print(f"wrote {target.relative_to(Path.cwd())} ({len(STATS)} stats)")
