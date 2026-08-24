@@ -35,7 +35,7 @@ TEAM_RELOCATIONS: dict[str, str] = {
 
 REQUIRED_COLUMNS: dict[str, frozenset[str]] = {
     "player_stats_week": frozenset({
-        "player_id", "player_display_name", "position", "season", "week",
+        "player_id", "player_display_name", "position", "season", "week", "game_id",
         "season_type", "team", "opponent_team", "completions", "attempts",
         "passing_yards", "passing_tds", "passing_interceptions",
         "sacks_suffered", "sack_yards_lost", "carries", "rushing_yards",
