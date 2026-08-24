@@ -184,8 +184,16 @@ QUALIFYING_ATTEMPTS_PER_GAME = 10
 
 
 def _renamed_stats(df: pl.DataFrame) -> pl.DataFrame:
-    """Apply the nflverse -> schema column renaming."""
-    return df.rename(STAT_COLUMN_MAP)
+    """Apply the nflverse -> schema column renaming, and fix the sack-yard sign.
+
+    nflverse stores `sack_yards_lost` as a negative number (-15 for fifteen yards
+    lost). We store it positive, because the column is graded lower-is-better:
+    left negative, a bigger loss would sort as a better result. It also lets ANY/A
+    subtract it the way the formula in parent spec section 6.1 is written.
+    """
+    return df.rename(STAT_COLUMN_MAP).with_columns(
+        pl.col("sack_yards").abs()
+    )
 
 
 def final_seasons(schedules: pl.DataFrame) -> set[int]:
