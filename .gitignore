@@ -18,6 +18,12 @@ venv/
 Thumbs.db
 .DS_Store
 
-docs/
+# Planning and spec docs stay local -- they are working notes, not product.
+# Git cannot re-include a file whose parent directory is excluded, so this must
+# exclude the CONTENTS (docs/*) rather than the directory itself, or the
+# negation below would have no effect.
+docs/*
+!docs/images/
+!docs/images
 
 .claude/

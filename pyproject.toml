@@ -5,7 +5,12 @@ build-backend = "hatchling.build"
 [project]
 name = "nfl-qb-tracker"
 version = "0.1.0"
+description = "Ingests every NFL quarterback season and game since 1999 from nflverse, grades each stat against league history and against the field, and loads the result into Postgres."
+readme = "README.md"
 requires-python = ">= 3.13"
+license = "MIT"
+authors = [{ name = "Michael Priore", email = "michaelrpriore@gmail.com" }]
+keywords = ["nfl", "football", "statistics", "etl", "nflverse"]
 
 dependencies = [
   "nflreadpy",
@@ -20,7 +25,8 @@ dev = ["pytest"]
 [tool.hatch.build.targets.wheel]
 packages = ["ingest"]
 
-[tool.pytest.ini_options] 
+[tool.pytest.ini_options]
 testpaths = ["ingest/tests"]
-
-
+markers = [
+  "network: hits the live nflverse feed; excluded from CI so upstream outages cannot turn the build red",
+]

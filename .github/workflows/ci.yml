@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  python:
+    name: Python tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install
+        run: pip install -e ".[dev]"
+
+      # `not network` deselects ingest/tests/test_sources.py, which queries the
+      # live nflverse feed. Those tests exist to fail when upstream renames a
+      # column, so they are genuinely useful -- but running them here would mean
+      # an nflverse outage turns this build red for reasons unrelated to the
+      # code in this commit. Run them locally with a bare `pytest`.
+      - name: Test
+        run: pytest -m "not network" -q
+
+  web:
+    name: Web build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # Placeholder credentials are enough: the one route is server-rendered on
+      # demand, so nothing queries Supabase during the build. This job checks
+      # that the app compiles and typechecks, not that it can reach a database.
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_placeholder

@@ -8,6 +8,14 @@ from ingest.sources import (
     fetch_schedules
 
 )
+
+# These exercise the real nflverse feed rather than fixtures: their whole job is
+# to fail when upstream renames a column or changes a dtype. That makes them
+# integration tests, so CI deselects them with `-m "not network"` -- an nflverse
+# outage should not turn the build red for reasons unrelated to this code.
+pytestmark = pytest.mark.network
+
+
 def test_verify_columns_full():
     df = fetch_player_stats(2025, "week")
     verify_columns(df, "player_stats_week") 

@@ -3,7 +3,14 @@ import { statsForView } from "@/lib/tiers";
 import Controls from "./Controls";
 import StatTable from "./StatTable";
 
-export const revalidate = 3600;
+// How long a Supabase response may be reused before the next request refetches.
+//
+// Data changes once a week -- a Tuesday `python -m ingest.load` -- so a long
+// window would be defensible. A minute is chosen for the human on the other end
+// instead: after running the ingest you want to refresh the page and see the new
+// numbers, not wonder whether it worked. The cost is at most one extra round
+// trip per minute per view, which is nothing against Supabase's free tier.
+export const revalidate = 60;
 
 const VIEWS = ["season_REG", "season_POST", "week_REG", "week_POST"] as const;
 
