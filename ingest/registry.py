@@ -47,7 +47,7 @@ STATS: dict[str, Stat] = {
     "td_pct": Stat(field="td_pct", display="TD%", legacy_key="TD%", kind=Kind.RATE, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.NONE, era_from=1999, views=VIEWS_SET, milestone_eligible=False),
     "passer_rating": Stat(field="passer_rating", display="RTG", legacy_key="RTG", kind=Kind.RATE, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.NONE, era_from=1999, views=VIEWS_SET, milestone_eligible=True),
     "any_a": Stat(field="any_a", display="ANY/A", legacy_key=None, kind=Kind.RATE, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.NONE, era_from=1999, views=VIEWS_SET, milestone_eligible=False),
-    "qbr": Stat(field="qbr", display="QBR", legacy_key="QBR", kind=Kind.RATE, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.NONE, era_from=2006, views=frozenset({"season_REG", "week_REG"}), milestone_eligible=True),
+    "qbr": Stat(field="qbr", display="QBR", legacy_key="QBR", kind=Kind.RATE, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.NONE, era_from=2006, views=VIEWS_SET, milestone_eligible=True),
     "interceptions": Stat(field="interceptions", display="INT", legacy_key="INT", kind=Kind.COUNTING, direction=Direction.LOWER_IS_BETTER, prorate=Prorate.GAMES, era_from=1999, views=VIEWS_SET, milestone_eligible=True),
     "int_pct": Stat(field="int_pct", display="INT%", legacy_key="INT%", kind=Kind.RATE, direction=Direction.LOWER_IS_BETTER, prorate=Prorate.NONE, era_from=1999, views=VIEWS_SET, milestone_eligible=True),
     "td_int_ratio": Stat(field="td_int_ratio", display="TD/INT", legacy_key="TD/INT", kind=Kind.RATE, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.NONE, era_from=1999, views=VIEWS_SET, milestone_eligible=True),
@@ -61,7 +61,7 @@ STATS: dict[str, Stat] = {
     "fumbles": Stat(field="fumbles", display="FUM", legacy_key="FUM", kind=Kind.COUNTING, direction=Direction.LOWER_IS_BETTER, prorate=Prorate.GAMES, era_from=1999, views=VIEWS_SET, milestone_eligible=True),
     "total_tds": Stat(field="total_tds", display="TOT TD", legacy_key=None, kind=Kind.COUNTING, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.GAMES, era_from=1999, views=VIEWS_SET, milestone_eligible=True),
     "total_yards": Stat(field="total_yards", display="TOT YDS", legacy_key=None, kind=Kind.COUNTING, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.GAMES, era_from=1999, views=VIEWS_SET, milestone_eligible=True),
-    "snap_pct": Stat(field="snap_pct", display="SNAP%", legacy_key=None, kind=Kind.RATE, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.NONE, era_from=2012, views=VIEWS_SET, milestone_eligible=True),
+    "snap_pct": Stat(field="snap_pct", display="SNAP%", legacy_key=None, kind=Kind.RATE, direction=Direction.HIGHER_IS_BETTER, prorate=Prorate.NONE, era_from=2013, views=VIEWS_SET, milestone_eligible=True),
 }
 
 def stats_for_view(view: str) -> list[Stat]:

@@ -177,7 +177,8 @@ def test_incalculable_without_carries():
     "stat, season, expected_present",
     [
         ("qbr", 2005, True), ("qbr", 2006, False),
-        ("snap_pct", 2011, True), ("snap_pct", 2012, False),
+        # nflverse's 2012 snap asset is empty, so the gate is 2013 not 2012.
+        ("snap_pct", 2011, True), ("snap_pct", 2012, True), ("snap_pct", 2013, False),
     ],
 )
 def test_era_gates(stat, season, expected_present):

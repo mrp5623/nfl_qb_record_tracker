@@ -148,7 +148,13 @@ _RATE_DENOMINATORS: dict[str, tuple[str, ...]] = {
 }
 
 # Stats that did not exist for the whole 1999+ range (parent spec section 6.3).
-_ERA_GATES: dict[str, int] = {"qbr": 2006, "snap_pct": 2012}
+#
+# snap_pct is gated at 2013, not the 2012 the spec states: nflverse publishes a
+# snap_counts_2012 asset but it is empty (verified 2026-08-11), so 2012 has no
+# snap data at all. Gating at 2012 would label those rows Incalculable -- "we
+# could not compute it" -- when the honest answer is that it was never recorded.
+# Revisit if nflverse ever backfills 2012.
+_ERA_GATES: dict[str, int] = {"qbr": 2006, "snap_pct": 2013}
 
 
 def sentinels_for_row(row: dict, season: int) -> dict[str, str]:
