@@ -1,0 +1,316 @@
+{
+  "_comment": "Hand-picked threshold overrides (parent spec 7.3). Applied on top of the generated percentiles by thresholds.apply_milestones(). Two kinds of entry live here. SNAP-TO-ROUND: the computed percentile already landed near a number a person would say, so it is nudged to that number - elite still means roughly the top 10% of qualified seasons, it just reads as 4500 instead of 4568. HAND-SET LADDER: the stat has too few distinct values for percentiles to produce seven distinct tiers (weekly touchdowns are 0-7, and 0 is most games), so a human picks what each count means from a box score. Every override records source=milestone and a note; both are internal provenance and must never render in the UI (7.4). Stats with no folk benchmark are deliberately absent and stay fully percentile-derived.",
+
+  "views": {
+    "season_REG": {
+      "passing_yards": {
+        "elite":   {"threshold": 4500, "note": "snap-to-round from 4568"},
+        "good":    {"threshold": 4000, "note": "the 4,000-yard season, the benchmark people actually cite; computed 4050"},
+        "average": {"threshold": 3300, "note": "snap-to-round from 3340"},
+        "below":   {"threshold": 2500, "note": "snap-to-round from 2508"},
+        "poor":    {"threshold": 1600, "note": "snap-to-round from 1622"}
+      },
+      "completions": {
+        "elite":   {"threshold": 400, "note": "snap-to-round from 395"},
+        "good":    {"threshold": 350, "note": "snap-to-round from 354; matches the legacy sheet exactly"},
+        "below":   {"threshold": 230, "note": "snap-to-round from 231"},
+        "poor":    {"threshold": 160, "note": "snap-to-round from 159"}
+      },
+      "attempts": {
+        "good":    {"threshold": 570, "note": "snap-to-round from 568"},
+        "average": {"threshold": 500, "note": "snap-to-round from 497"},
+        "below":   {"threshold": 400, "note": "snap-to-round from 402"},
+        "poor":    {"threshold": 270, "note": "snap-to-round from 272"}
+      },
+      "passing_tds": {
+        "good":    {"threshold": 25, "note": "snap-to-round from 26"}
+      },
+      "completion_pct": {
+        "good":    {"threshold": 65.0, "note": "snap-to-round from 64.7"},
+        "average": {"threshold": 61.0, "note": "snap-to-round from 60.8"},
+        "below":   {"threshold": 57.0, "note": "snap-to-round from 56.8"}
+      },
+      "passer_rating": {
+        "elite":   {"threshold": 100.0, "note": "the 100-rating season; computed 101.4"},
+        "good":    {"threshold": 92.0, "note": "snap-to-round from 92.1"},
+        "average": {"threshold": 82.0, "note": "snap-to-round from 81.7"},
+        "below":   {"threshold": 71.0, "note": "snap-to-round from 71.2"}
+      },
+      "yards_per_attempt": {
+        "average": {"threshold": 7.0, "note": "7.0 Y/A is the conventional dividing line; computed 6.8"}
+      },
+      "yards_per_completion": {
+        "elite":   {"threshold": 13.0, "note": "snap-to-round from 12.9"},
+        "average": {"threshold": 11.0, "note": "snap-to-round from 11.2"},
+        "below":   {"threshold": 10.5, "note": "snap-to-round from 10.4"},
+        "poor":    {"threshold": 9.5, "note": "snap-to-round from 9.4"}
+      },
+      "td_pct": {
+        "good":    {"threshold": 5.0, "note": "snap-to-round from 4.9"},
+        "average": {"threshold": 4.0, "note": "snap-to-round from 3.8"},
+        "below":   {"threshold": 3.0, "note": "snap-to-round from 2.8"},
+        "poor":    {"threshold": 1.5, "note": "snap-to-round from 1.4"}
+      },
+      "int_pct": {
+        "good":    {"threshold": 2.0, "note": "snap-to-round from 1.9"},
+        "average": {"threshold": 2.75, "note": "snap-to-round from 2.7"},
+        "below":   {"threshold": 3.75, "note": "snap-to-round from 3.8"},
+        "poor":    {"threshold": 5.0, "note": "snap-to-round from 5.1"}
+      },
+      "interceptions": {
+        "good":    {"threshold": 10, "note": "snap-to-round from 9"},
+        "below":   {"threshold": 18, "note": "snap-to-round from 17"},
+        "poor":    {"threshold": 22, "note": "snap-to-round from 23"}
+      },
+      "td_int_ratio": {
+        "elite":   {"threshold": 3.0, "note": "snap-to-round from 3.1"},
+        "average": {"threshold": 1.25, "note": "snap-to-round from 1.3"},
+        "below":   {"threshold": 0.75, "note": "snap-to-round from 0.8"}
+      },
+      "sack_pct": {
+        "good":    {"threshold": 5.0, "note": "snap-to-round from 4.9; matches the legacy sheet"},
+        "poor":    {"threshold": 10.5, "note": "snap-to-round from 10.6"}
+      },
+      "sacks": {
+        "good":    {"threshold": 25, "note": "snap-to-round from 24"},
+        "average": {"threshold": 35, "note": "snap-to-round from 34"},
+        "below":   {"threshold": 45, "note": "snap-to-round from 44"},
+        "poor":    {"threshold": 55, "note": "snap-to-round from 53"}
+      },
+      "sack_yards": {
+        "elite":   {"threshold": 95, "note": "snap-to-round from 94"},
+        "good":    {"threshold": 155, "note": "snap-to-round from 154"},
+        "average": {"threshold": 220, "note": "snap-to-round from 217"},
+        "below":   {"threshold": 285, "note": "snap-to-round from 286"},
+        "poor":    {"threshold": 355, "note": "snap-to-round from 357"}
+      },
+      "rushing_yards": {
+        "elite":   {"threshold": 450, "note": "snap-to-round from 447"},
+        "good":    {"threshold": 270, "note": "snap-to-round from 269"},
+        "average": {"threshold": 125, "note": "snap-to-round from 124"},
+        "below":   {"threshold": 50, "note": "snap-to-round from 48"}
+      },
+      "rushing_attempts": {
+        "elite":   {"threshold": 80, "note": "snap-to-round from 82"},
+        "good":    {"threshold": 55, "note": "snap-to-round from 57; matches the legacy sheet"},
+        "average": {"threshold": 40, "note": "snap-to-round from 38"},
+        "below":   {"threshold": 25, "note": "snap-to-round from 26"}
+      },
+      "rushing_tds": {
+        "elite":   {"threshold": 6, "note": "hand-set ladder: percentiles gave 5/2/0/0/0 because most seasons are 0"},
+        "good":    {"threshold": 4, "note": "hand-set ladder"},
+        "average": {"threshold": 3, "note": "hand-set ladder"},
+        "below":   {"threshold": 2, "note": "hand-set ladder"},
+        "poor":    {"threshold": 1, "note": "hand-set ladder; 0 rushing TDs falls through to worst"}
+      },
+      "qbr": {
+        "elite":   {"threshold": 75.0, "note": "snap-to-round from 73.3"},
+        "good":    {"threshold": 65.0, "note": "snap-to-round from 66.3; matches the legacy sheet"},
+        "average": {"threshold": 57.5, "note": "snap-to-round from 57.7"},
+        "below":   {"threshold": 50.0, "note": "snap-to-round from 48.8"},
+        "poor":    {"threshold": 40.0, "note": "snap-to-round from 40.9; matches the legacy sheet"}
+      },
+      "any_a": {
+        "elite":   {"threshold": 7.5, "note": "snap-to-round from 7.4"},
+        "good":    {"threshold": 6.5, "note": "snap-to-round from 6.4"},
+        "average": {"threshold": 5.5, "note": "snap-to-round from 5.4"},
+        "below":   {"threshold": 4.5, "note": "snap-to-round from 4.3"},
+        "poor":    {"threshold": 3.0, "note": "snap-to-round from 3.1"}
+      },
+      "total_yards": {
+        "elite":   {"threshold": 4750, "note": "snap-to-round from 4767"},
+        "good":    {"threshold": 4250, "note": "snap-to-round from 4266"},
+        "average": {"threshold": 3500, "note": "snap-to-round from 3534"},
+        "below":   {"threshold": 2700, "note": "snap-to-round from 2680"},
+        "poor":    {"threshold": 1750, "note": "snap-to-round from 1760"}
+      },
+      "total_tds": {
+        "elite":   {"threshold": 35, "note": "snap-to-round from 34"}
+      },
+      "snap_pct": {
+        "elite":   {"threshold": 97.0, "note": "fixed band, not a percentile: near-every-snap starter"},
+        "good":    {"threshold": 90.0, "note": "fixed band: full-time starter"},
+        "average": {"threshold": 75.0, "note": "fixed band: starter with situational relief"},
+        "below":   {"threshold": 50.0, "note": "fixed band: split duty"},
+        "poor":    {"threshold": 25.0, "note": "fixed band: relief appearances"}
+      }
+    },
+
+    "week_REG": {
+      "passing_yards": {
+        "elite":   {"threshold": 330, "note": "snap-to-round from 331"},
+        "good":    {"threshold": 280, "note": "snap-to-round from 279"},
+        "average": {"threshold": 225, "note": "snap-to-round from 223"},
+        "below":   {"threshold": 170, "note": "snap-to-round from 168"},
+        "poor":    {"threshold": 120, "note": "snap-to-round from 117"}
+      },
+      "completion_pct": {
+        "elite":   {"threshold": 75.0, "note": "computed 75.0 exactly"},
+        "good":    {"threshold": 70.0, "note": "the 70% game; computed 68.8"},
+        "average": {"threshold": 62.0, "note": "snap-to-round from 61.9"},
+        "below":   {"threshold": 55.0, "note": "computed 55.0 exactly"},
+        "poor":    {"threshold": 48.0, "note": "snap-to-round from 48.3"}
+      },
+      "passer_rating": {
+        "elite":   {"threshold": 120.0, "note": "snap-to-round from 122.8"},
+        "good":    {"threshold": 105.0, "note": "snap-to-round from 104.8"},
+        "average": {"threshold": 85.0, "note": "snap-to-round from 85.7; matches the legacy sheet"},
+        "below":   {"threshold": 67.5, "note": "snap-to-round from 67.2"},
+        "poor":    {"threshold": 50.0, "note": "snap-to-round from 49.4"}
+      },
+      "yards_per_attempt": {
+        "elite":   {"threshold": 9.5, "note": "snap-to-round from 9.6"},
+        "good":    {"threshold": 8.0, "note": "snap-to-round from 8.2"},
+        "average": {"threshold": 7.0, "note": "snap-to-round from 6.9"},
+        "below":   {"threshold": 6.0, "note": "snap-to-round from 5.8"},
+        "poor":    {"threshold": 5.0, "note": "snap-to-round from 4.7"}
+      },
+      "yards_per_completion": {
+        "elite":   {"threshold": 15.0, "note": "snap-to-round from 14.9"},
+        "good":    {"threshold": 13.0, "note": "snap-to-round from 12.9"},
+        "average": {"threshold": 11.0, "note": "snap-to-round from 11.2"},
+        "below":   {"threshold": 10.0, "note": "snap-to-round from 9.7"},
+        "poor":    {"threshold": 8.5, "note": "snap-to-round from 8.4"}
+      },
+      "any_a": {
+        "elite":   {"threshold": 9.5, "note": "snap-to-round from 9.7"},
+        "good":    {"threshold": 7.5, "note": "snap-to-round from 7.7"},
+        "average": {"threshold": 6.0, "note": "snap-to-round from 5.8"},
+        "below":   {"threshold": 4.0, "note": "snap-to-round from 3.9"},
+        "poor":    {"threshold": 2.0, "note": "snap-to-round from 2.1"}
+      },
+      "passing_tds": {
+        "elite":   {"threshold": 4, "note": "hand-set ladder: percentiles gave 3/2/1/0/0 on a 0-7 variable"},
+        "good":    {"threshold": 3, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 1, "note": "hand-set ladder"},
+        "poor":    {"threshold": 0.5, "note": "hand-set ladder; a 0-TD game falls through to worst"}
+      },
+      "total_tds": {
+        "elite":   {"threshold": 4, "note": "hand-set ladder: percentiles gave 3/2/1/1/0"},
+        "good":    {"threshold": 3, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 1, "note": "hand-set ladder"},
+        "poor":    {"threshold": 0.5, "note": "hand-set ladder; a 0-TD game falls through to worst"}
+      },
+      "td_pct": {
+        "elite":   {"threshold": 9.0, "note": "hand-set ladder: percentiles gave 9.4/6.5/3.7/0/0"},
+        "good":    {"threshold": 6.5, "note": "hand-set ladder"},
+        "average": {"threshold": 4.0, "note": "hand-set ladder"},
+        "below":   {"threshold": 2.5, "note": "hand-set ladder"},
+        "poor":    {"threshold": 1.0, "note": "hand-set ladder; a 0-TD game falls through to worst"}
+      },
+      "interceptions": {
+        "elite":   {"threshold": 0, "note": "hand-set ladder: percentiles gave 0/0/1/1/2 on a 0-7 variable"},
+        "good":    {"threshold": 1, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 3, "note": "hand-set ladder"},
+        "poor":    {"threshold": 4, "note": "hand-set ladder; 5 or more falls through to worst"}
+      },
+      "int_pct": {
+        "elite":   {"threshold": 0.0, "note": "hand-set ladder: percentiles gave 0/0/2.4/4.3/7.1"},
+        "good":    {"threshold": 2.0, "note": "hand-set ladder"},
+        "average": {"threshold": 3.5, "note": "hand-set ladder"},
+        "below":   {"threshold": 5.5, "note": "hand-set ladder"},
+        "poor":    {"threshold": 8.0, "note": "hand-set ladder"}
+      },
+      "td_int_ratio": {
+        "elite":   {"threshold": 3.0, "note": "hand-set ladder: percentiles gave 2/1.5/1/0/0"},
+        "good":    {"threshold": 2.0, "note": "hand-set ladder"},
+        "average": {"threshold": 1.0, "note": "hand-set ladder"},
+        "below":   {"threshold": 0.5, "note": "hand-set ladder"},
+        "poor":    {"threshold": 0.25, "note": "hand-set ladder"}
+      },
+      "fumbles": {
+        "elite":   {"threshold": 0, "note": "hand-set ladder: percentiles gave 0/0/0/1/2"},
+        "good":    {"threshold": 1, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 3, "note": "hand-set ladder"},
+        "poor":    {"threshold": 4, "note": "hand-set ladder"}
+      },
+      "snap_pct": {
+        "elite":   {"threshold": 100.0, "note": "fixed band, not a percentile: took every offensive snap"},
+        "good":    {"threshold": 95.0, "note": "fixed band: started and finished"},
+        "average": {"threshold": 80.0, "note": "fixed band: started, came out late"},
+        "below":   {"threshold": 50.0, "note": "fixed band: split duty"},
+        "poor":    {"threshold": 20.0, "note": "fixed band: relief appearance"}
+      }
+    },
+
+    "week_POST": {
+      "passing_tds": {
+        "elite":   {"threshold": 4, "note": "hand-set ladder: percentiles gave 3/2/1/1/0"},
+        "good":    {"threshold": 3, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 1, "note": "hand-set ladder"},
+        "poor":    {"threshold": 0.5, "note": "hand-set ladder; a 0-TD game falls through to worst"}
+      },
+      "total_tds": {
+        "elite":   {"threshold": 4, "note": "hand-set ladder: percentiles gave 3/2/2/1/0"},
+        "good":    {"threshold": 3, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 1, "note": "hand-set ladder"},
+        "poor":    {"threshold": 0.5, "note": "hand-set ladder"}
+      },
+      "interceptions": {
+        "elite":   {"threshold": 0, "note": "hand-set ladder: percentiles gave 0/0/1/1/2"},
+        "good":    {"threshold": 1, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 3, "note": "hand-set ladder"},
+        "poor":    {"threshold": 4, "note": "hand-set ladder"}
+      },
+      "int_pct": {
+        "elite":   {"threshold": 0.0, "note": "hand-set ladder: percentiles gave 0/0/2.3/4.2/6.9"},
+        "good":    {"threshold": 2.0, "note": "hand-set ladder"},
+        "average": {"threshold": 3.5, "note": "hand-set ladder"},
+        "below":   {"threshold": 5.5, "note": "hand-set ladder"},
+        "poor":    {"threshold": 8.0, "note": "hand-set ladder"}
+      },
+      "td_int_ratio": {
+        "elite":   {"threshold": 3.0, "note": "hand-set ladder: percentiles gave 2/2/1/0.3/0"},
+        "good":    {"threshold": 2.0, "note": "hand-set ladder"},
+        "average": {"threshold": 1.0, "note": "hand-set ladder"},
+        "below":   {"threshold": 0.5, "note": "hand-set ladder"},
+        "poor":    {"threshold": 0.25, "note": "hand-set ladder"}
+      },
+      "fumbles": {
+        "elite":   {"threshold": 0, "note": "hand-set ladder: percentiles gave 0/0/0/1/2"},
+        "good":    {"threshold": 1, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 3, "note": "hand-set ladder"},
+        "poor":    {"threshold": 4, "note": "hand-set ladder"}
+      },
+      "snap_pct": {
+        "elite":   {"threshold": 100.0, "note": "fixed band, not a percentile: took every offensive snap"},
+        "good":    {"threshold": 95.0, "note": "fixed band: started and finished"},
+        "average": {"threshold": 80.0, "note": "fixed band: started, came out late"},
+        "below":   {"threshold": 50.0, "note": "fixed band: split duty"},
+        "poor":    {"threshold": 20.0, "note": "fixed band: relief appearance"}
+      }
+    },
+
+    "season_POST": {
+      "interceptions": {
+        "elite":   {"threshold": 0, "note": "hand-set ladder: percentiles gave 0/1/1/2/3"},
+        "good":    {"threshold": 1, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 3, "note": "hand-set ladder"},
+        "poor":    {"threshold": 4, "note": "hand-set ladder"}
+      },
+      "fumbles": {
+        "elite":   {"threshold": 0, "note": "hand-set ladder: percentiles gave 0/0/1/2/2"},
+        "good":    {"threshold": 1, "note": "hand-set ladder"},
+        "average": {"threshold": 2, "note": "hand-set ladder"},
+        "below":   {"threshold": 3, "note": "hand-set ladder"},
+        "poor":    {"threshold": 4, "note": "hand-set ladder"}
+      },
+      "snap_pct": {
+        "elite":   {"threshold": 100.0, "note": "fixed band, not a percentile: took every offensive snap"},
+        "good":    {"threshold": 95.0, "note": "fixed band: started and finished"},
+        "average": {"threshold": 80.0, "note": "fixed band: started, came out late"},
+        "below":   {"threshold": 50.0, "note": "fixed band: split duty"},
+        "poor":    {"threshold": 20.0, "note": "fixed band: relief appearance"}
+      }
+    }
+  }
+}

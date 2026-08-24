@@ -24,13 +24,18 @@ Usage:
         doc = thresholds.generate_all(conn, as_of_season=2025)
 """
 
+import copy
+import json
 import math
 from datetime import datetime, timezone
+from pathlib import Path
 
 import psycopg
 from psycopg import sql
 
 from ingest.registry import STATS, VIEWS, Direction, Kind, Prorate, Stat, Tier
+
+MILESTONES_PATH = Path(__file__).parents[1] / "config" / "milestones.json"
 
 # Percentile cutpoints for a higher-is-better stat, best tier first. Five
 # cutpoints carve the distribution into six bins; `record` sits above them and
@@ -379,6 +384,84 @@ def generate_thresholds(conn: psycopg.Connection, view: str, as_of_season: int) 
         ),
         "stats": stats,
     }
+
+
+class MilestoneError(Exception):
+    """Raised when milestones.json names something that does not exist.
+
+    This exists because the failure it prevents is silent. A typo'd stat name --
+    "passing_yds" for "passing_yards" -- would simply never match, the 4,000-yard
+    override would never apply, and the generated file would look entirely
+    reasonable while being wrong. Nothing downstream could detect it.
+    """
+
+
+def load_milestones(path: Path | None = None) -> dict:
+    """Read config/milestones.json."""
+    return json.loads((path or MILESTONES_PATH).read_text(encoding="utf-8"))
+
+
+def apply_milestones(thresholds: dict, milestones: dict) -> dict:
+    """Overlay hand-picked thresholds onto the generated ones (parent 7.3).
+
+    Returns a new document; the input is not mutated, so the generated values
+    stay available for comparison at the Task 20 review.
+
+    An override replaces one tier's threshold and stamps `source: "milestone"`
+    with a `note` saying why. Both fields are internal provenance and must never
+    reach the UI (parent 7.4) -- they are there so a reader of the JSON can tell
+    a judgement call from a computed percentile.
+
+    Every lookup raises rather than skipping. See `MilestoneError`.
+    """
+    result = copy.deepcopy(thresholds)
+    valid_tiers = {str(tier) for tier in Tier}
+
+    for view, stats in milestones.get("views", {}).items():
+        if view not in result["views"]:
+            raise MilestoneError(
+                f"milestones name view {view!r}, which is not in the generated "
+                f"thresholds; expected one of {sorted(result['views'])}"
+            )
+        view_stats = result["views"][view]["stats"]
+
+        for stat_name, overrides in stats.items():
+            if stat_name not in view_stats:
+                raise MilestoneError(
+                    f"milestones name stat {stat_name!r} in view {view!r}, which "
+                    f"is not in the generated thresholds. Check the spelling "
+                    f"against ingest/registry.py"
+                )
+            tiers = view_stats[stat_name]["tiers"]
+            by_name = {t["tier"]: t for t in tiers}
+
+            for tier_name, override in overrides.items():
+                if tier_name not in valid_tiers:
+                    raise MilestoneError(
+                        f"{view}.{stat_name} names tier {tier_name!r}, which is "
+                        f"not a tier; expected one of {sorted(valid_tiers)}"
+                    )
+                if tier_name == str(Tier.WORST):
+                    raise MilestoneError(
+                        f"{view}.{stat_name} overrides {tier_name!r}, which has "
+                        f"no threshold -- it is the unconditional catch-all"
+                    )
+                if tier_name not in by_name:
+                    raise MilestoneError(
+                        f"{view}.{stat_name} has no {tier_name!r} tier to override"
+                    )
+                if "threshold" not in override:
+                    raise MilestoneError(
+                        f"{view}.{stat_name}.{tier_name} has no 'threshold' key"
+                    )
+
+                entry = by_name[tier_name]
+                entry["computed"] = entry["threshold"]
+                entry["threshold"] = override["threshold"]
+                entry["source"] = "milestone"
+                entry["note"] = override.get("note", "")
+
+    return result
 
 
 def generate_all(conn: psycopg.Connection, as_of_season: int) -> dict:
