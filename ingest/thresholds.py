@@ -616,6 +616,20 @@ def generate_all(conn: psycopg.Connection, as_of_season: int) -> dict:
     }
 
 
+def build(conn: psycopg.Connection, as_of_season: int) -> dict:
+    """Generate, overlay milestones, and validate. Raises rather than emitting.
+
+    The validate() call is the point of this function. Nothing downstream reads
+    the thresholds defensively -- grade.py trusts that every stat has seven
+    ordered tiers -- so a malformed document has to fail here or not at all.
+    """
+    milestones = load_milestones()
+    doc = apply_milestones(generate_all(conn, as_of_season), milestones)
+    validate(doc, milestones.get("_collapsed"))
+    doc["version"] = f"v{as_of_season}"
+    return doc
+
+
 def population_report(conn: psycopg.Connection, as_of_season: int) -> list[dict]:
     """How many rows D9's 10-attempts-per-game rule admits, per season and view.
 
@@ -650,3 +664,40 @@ def population_report(conn: psycopg.Connection, as_of_season: int) -> list[dict]
                 }
             )
     return report
+
+
+def _write(path: Path, payload: object) -> int:
+    """Write JSON and return the byte count."""
+    text = json.dumps(payload, indent=2, sort_keys=False) + "\n"
+    path.write_text(text, encoding="utf-8")
+    return len(text.encode("utf-8"))
+
+
+if __name__ == "__main__":
+    from ingest import load
+
+    AS_OF = 2025
+    config_dir = MILESTONES_PATH.parent
+
+    with load.get_connection() as conn:
+        doc = build(conn, AS_OF)
+        report = population_report(conn, AS_OF)
+
+    thresholds_path = config_dir / f"thresholds_v{AS_OF}.json"
+    report_path = config_dir / f"population_v{AS_OF}.json"
+    n_thresholds = _write(thresholds_path, doc)
+    n_report = _write(report_path, report)
+
+    print(f"{thresholds_path.name}  {n_thresholds:,} bytes")
+    print(f"{report_path.name}  {n_report:,} bytes")
+    for view, entry in doc["views"].items():
+        n_milestone = sum(
+            1
+            for s in entry["stats"].values()
+            for t in s["tiers"]
+            if t["source"] == "milestone"
+        )
+        print(
+            f"  {view:<12} {len(entry['stats']):>2} stats, "
+            f"{n_milestone:>3} milestone overrides"
+        )

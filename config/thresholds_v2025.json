@@ -1,0 +1,6653 @@
+{
+  "as_of_season": 2025,
+  "generated_at": "2026-08-24T04:08:21+00:00",
+  "cutpoints": {
+    "elite": 0.9,
+    "good": 0.75,
+    "average": 0.5,
+    "below": 0.25,
+    "poor": 0.1
+  },
+  "rate_record_min_games": 14,
+  "views": {
+    "season_REG": {
+      "granularity": "season",
+      "season_type": "REG",
+      "prorate_denominator_games": 17,
+      "stats": {
+        "completions": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "CMP",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 490.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 400,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 395.0,
+              "note": "snap-to-round from 395"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 350,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 354.0,
+              "note": "snap-to-round from 354; matches the legacy sheet exactly"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 300.0,
+              "source": "p50",
+              "prorate": "games"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 230,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 231.0,
+              "note": "snap-to-round from 231"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 160,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 159.0,
+              "note": "snap-to-round from 159"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "attempts": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "ATT",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 733.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 620.0,
+              "source": "p90",
+              "prorate": "games"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 570,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 568.0,
+              "note": "snap-to-round from 568"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 500,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 497.0,
+              "note": "snap-to-round from 497"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 400,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 402.0,
+              "note": "snap-to-round from 402"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 270,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 272.0,
+              "note": "snap-to-round from 272"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "completion_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "CMP%",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1561,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 74.4,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 67.6,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 65.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 64.7,
+              "note": "snap-to-round from 64.7"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 61.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 60.8,
+              "note": "snap-to-round from 60.8"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 57.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 56.8,
+              "note": "snap-to-round from 56.8"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 52.5,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passing_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "YDS",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 5535.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 4500,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 4568.0,
+              "note": "snap-to-round from 4568"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 4000,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 4050.0,
+              "note": "the 4,000-yard season, the benchmark people actually cite; computed 4050"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3300,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 3340.0,
+              "note": "snap-to-round from 3340"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2500,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 2508.0,
+              "note": "snap-to-round from 2508"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 1600,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 1622.0,
+              "note": "snap-to-round from 1622"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "yards_per_completion": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "Y/C",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1561,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 13.8,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 13.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 12.9,
+              "note": "snap-to-round from 12.9"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 12.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 11.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 11.2,
+              "note": "snap-to-round from 11.2"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 10.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 10.4,
+              "note": "snap-to-round from 10.4"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 9.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 9.4,
+              "note": "snap-to-round from 9.4"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "yards_per_attempt": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "Y/A",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1561,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 9.6,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 8.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 7.4,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 6.8,
+              "note": "7.0 Y/A is the conventional dividing line; computed 6.8"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 6.1,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 5.4,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passing_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "PTD",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 55.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 32.0,
+              "source": "p90",
+              "prorate": "games"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 25,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 26.0,
+              "note": "snap-to-round from 26"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 18.0,
+              "source": "p50",
+              "prorate": "games"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 11.0,
+              "source": "p25",
+              "prorate": "games"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p10",
+              "prorate": "games"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "td_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "TD%",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1561,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 9.8,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 5.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 4.9,
+              "note": "snap-to-round from 4.9"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 4.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.8,
+              "note": "snap-to-round from 3.8"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 3.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.8,
+              "note": "snap-to-round from 2.8"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 1.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.4,
+              "note": "snap-to-round from 1.4"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passer_rating": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "RTG",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1561,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 122.4,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 101.4,
+              "note": "the 100-rating season; computed 101.4"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 92.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 92.1,
+              "note": "snap-to-round from 92.1"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 82.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 81.7,
+              "note": "snap-to-round from 81.7"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 71.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 71.2,
+              "note": "snap-to-round from 71.2"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 58.5,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "any_a": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "ANY/A",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1561,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 9.7,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 7.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 7.4,
+              "note": "snap-to-round from 7.4"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 6.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 6.4,
+              "note": "snap-to-round from 6.4"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 5.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 5.4,
+              "note": "snap-to-round from 5.4"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 4.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 4.3,
+              "note": "snap-to-round from 4.3"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 3.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.1,
+              "note": "snap-to-round from 3.1"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "qbr": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "QBR",
+          "population": {
+            "record_n": 428,
+            "qualified_n": 764,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 87.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 75.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 73.3,
+              "note": "snap-to-round from 73.3"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 65.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 66.3,
+              "note": "snap-to-round from 66.3; matches the legacy sheet"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 57.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 57.7,
+              "note": "snap-to-round from 57.7"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 50.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 48.8,
+              "note": "snap-to-round from 48.8"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 40.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 40.9,
+              "note": "snap-to-round from 40.9; matches the legacy sheet"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "interceptions": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "INT",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 30.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 5.0,
+              "source": "p10",
+              "prorate": "games"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 10,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 9.0,
+              "note": "snap-to-round from 9"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 14.0,
+              "source": "p50",
+              "prorate": "games"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 18,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 17.0,
+              "note": "snap-to-round from 17"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 22,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 23.0,
+              "note": "snap-to-round from 23"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "int_pct": {
+          "direction": "lower_is_better",
+          "kind": "rate",
+          "display": "INT%",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1561,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 5.5,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 1.2,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 2.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.9,
+              "note": "snap-to-round from 1.9"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2.75,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.7,
+              "note": "snap-to-round from 2.7"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3.75,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.8,
+              "note": "snap-to-round from 3.8"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 5.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 5.1,
+              "note": "snap-to-round from 5.1"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "td_int_ratio": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "TD/INT",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1474,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 12.5,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 3.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.1,
+              "note": "snap-to-round from 3.1"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 1.25,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.3,
+              "note": "snap-to-round from 1.3"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.75,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.8,
+              "note": "snap-to-round from 0.8"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.4,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sacks": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "SCK",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 76.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 17.0,
+              "source": "p10",
+              "prorate": "games"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 25,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 24.0,
+              "note": "snap-to-round from 24"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 35,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 34.0,
+              "note": "snap-to-round from 34"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 45,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 44.0,
+              "note": "snap-to-round from 44"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 55,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 53.0,
+              "note": "snap-to-round from 53"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "sack_yards": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "SCK YDS",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 477.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 95,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 94.0,
+              "note": "snap-to-round from 94"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 155,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 154.0,
+              "note": "snap-to-round from 154"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 220,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 217.0,
+              "note": "snap-to-round from 217"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 285,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 286.0,
+              "note": "snap-to-round from 286"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 355,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 357.0,
+              "note": "snap-to-round from 357"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "sack_pct": {
+          "direction": "lower_is_better",
+          "kind": "rate",
+          "display": "SCK%",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1561,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 14.7,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 3.5,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 5.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 4.9,
+              "note": "snap-to-round from 4.9; matches the legacy sheet"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 6.5,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 8.5,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 10.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 10.6,
+              "note": "snap-to-round from 10.6"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RYDS",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 1206.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 450,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 447.0,
+              "note": "snap-to-round from 447"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 270,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 269.0,
+              "note": "snap-to-round from 269"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 125,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 124.0,
+              "note": "snap-to-round from 124"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 50,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 48.0,
+              "note": "snap-to-round from 48"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "p10",
+              "prorate": "games"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "rushing_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RTD",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 15.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 6,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 5.0,
+              "note": "hand-set ladder: percentiles gave 5/2/0/0/0 because most seasons are 0"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 0.0,
+              "note": "hand-set ladder; 0 rushing TDs falls through to worst"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "rushing_attempts": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RATT",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 176.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 80,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 82.0,
+              "note": "snap-to-round from 82"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 55,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 57.0,
+              "note": "snap-to-round from 57; matches the legacy sheet"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 40,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 38.0,
+              "note": "snap-to-round from 38"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 25,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 26.0,
+              "note": "snap-to-round from 26"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 17.0,
+              "source": "p10",
+              "prorate": "games"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "rush_yards_per_att": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "RY/RA",
+          "population": {
+            "record_n": 571,
+            "qualified_n": 1513,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 8.4,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 6.3,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 5.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3.5,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.7,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "fumbles": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "FUM",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 23.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "games"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 5.0,
+              "source": "p25",
+              "prorate": "games"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 8.0,
+              "source": "p50",
+              "prorate": "games"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 12.0,
+              "source": "p75",
+              "prorate": "games"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 17.0,
+              "source": "p90",
+              "prorate": "games"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "total_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "TOT TD",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 56.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 35,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 34.0,
+              "note": "snap-to-round from 34"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 28.0,
+              "source": "p75",
+              "prorate": "games"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "p50",
+              "prorate": "games"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 13.0,
+              "source": "p25",
+              "prorate": "games"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p10",
+              "prorate": "games"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "total_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "TOT YDS",
+          "population": {
+            "record_n": 2078,
+            "qualified_n": 1561,
+            "record_min_games": null,
+            "normalized_per_game": true
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 5621.0,
+              "source": "max",
+              "prorate": "games"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 4750,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 4767.0,
+              "note": "snap-to-round from 4767"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 4250,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 4266.0,
+              "note": "snap-to-round from 4266"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3500,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 3534.0,
+              "note": "snap-to-round from 3534"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2700,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 2680.0,
+              "note": "snap-to-round from 2680"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 1750,
+              "source": "milestone",
+              "prorate": "games",
+              "computed": 1760.0,
+              "note": "snap-to-round from 1760"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "games"
+            }
+          ]
+        },
+        "snap_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "SNAP%",
+          "population": {
+            "record_n": 286,
+            "qualified_n": 751,
+            "record_min_games": 14,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 97.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 99.6,
+              "note": "fixed band, not a percentile: near-every-snap starter"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 90.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 97.9,
+              "note": "fixed band: full-time starter"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 75.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 92.6,
+              "note": "fixed band: starter with situational relief"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 50.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 75.4,
+              "note": "fixed band: split duty"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 25.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 45.0,
+              "note": "fixed band: relief appearances"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        }
+      }
+    },
+    "week_REG": {
+      "granularity": "week",
+      "season_type": "REG",
+      "prorate_denominator_games": null,
+      "stats": {
+        "completions": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "CMP",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 47.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 28.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 24.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 15.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 11.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "attempts": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "ATT",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 69.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 44.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 38.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 32.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 26.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "completion_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "CMP%",
+          "population": {
+            "record_n": 14504,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 75.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 75.0,
+              "note": "computed 75.0 exactly"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 70.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 68.8,
+              "note": "the 70% game; computed 68.8"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 62.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 61.9,
+              "note": "snap-to-round from 61.9"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 55.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 55.0,
+              "note": "computed 55.0 exactly"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 48.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 48.3,
+              "note": "snap-to-round from 48.3"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passing_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "YDS",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 527.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 330,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 331.0,
+              "note": "snap-to-round from 331"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 280,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 279.0,
+              "note": "snap-to-round from 279"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 225,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 223.0,
+              "note": "snap-to-round from 223"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 170,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 168.0,
+              "note": "snap-to-round from 168"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 120,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 117.0,
+              "note": "snap-to-round from 117"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "yards_per_completion": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "Y/C",
+          "population": {
+            "record_n": 14504,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 33.5,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 15.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 14.9,
+              "note": "snap-to-round from 14.9"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 13.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 12.9,
+              "note": "snap-to-round from 12.9"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 11.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 11.2,
+              "note": "snap-to-round from 11.2"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 10.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 9.7,
+              "note": "snap-to-round from 9.7"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 8.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 8.4,
+              "note": "snap-to-round from 8.4"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "yards_per_attempt": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "Y/A",
+          "population": {
+            "record_n": 14504,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 19.8,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 9.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 9.6,
+              "note": "snap-to-round from 9.6"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 8.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 8.2,
+              "note": "snap-to-round from 8.2"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 6.9,
+              "note": "snap-to-round from 6.9"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 5.8,
+              "note": "snap-to-round from 5.8"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 5.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 4.7,
+              "note": "snap-to-round from 4.7"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passing_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "PTD",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.0,
+              "note": "hand-set ladder: percentiles gave 3/2/1/0/0 on a 0-7 variable"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder; a 0-TD game falls through to worst"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "td_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "TD%",
+          "population": {
+            "record_n": 14504,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 31.2,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 9.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 9.4,
+              "note": "hand-set ladder: percentiles gave 9.4/6.5/3.7/0/0"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 6.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 6.5,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 4.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.7,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder; a 0-TD game falls through to worst"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passer_rating": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "RTG",
+          "population": {
+            "record_n": 14504,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 158.3,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 120.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 122.8,
+              "note": "snap-to-round from 122.8"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 105.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 104.8,
+              "note": "snap-to-round from 104.8"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 85.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 85.7,
+              "note": "snap-to-round from 85.7; matches the legacy sheet"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 67.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 67.2,
+              "note": "snap-to-round from 67.2"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 50.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 49.4,
+              "note": "snap-to-round from 49.4"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "any_a": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "ANY/A",
+          "population": {
+            "record_n": 14504,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 23.4,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 9.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 9.7,
+              "note": "snap-to-round from 9.7"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 7.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 7.7,
+              "note": "snap-to-round from 7.7"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 5.8,
+              "note": "snap-to-round from 5.8"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 4.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.9,
+              "note": "snap-to-round from 3.9"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.1,
+              "note": "snap-to-round from 2.1"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "qbr": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "QBR",
+          "population": {
+            "record_n": 10236,
+            "qualified_n": 10236,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 99.7,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 87.3,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 75.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 54.6,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 32.4,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 16.9,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "interceptions": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "INT",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder: percentiles gave 0/0/1/1/2 on a 0-7 variable"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder; 5 or more falls through to worst"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "int_pct": {
+          "direction": "lower_is_better",
+          "kind": "rate",
+          "display": "INT%",
+          "population": {
+            "record_n": 14504,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 35.7,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder: percentiles gave 0/0/2.4/4.3/7.1"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 2.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 3.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.4,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 5.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 4.3,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 8.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 7.1,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "td_int_ratio": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "TD/INT",
+          "population": {
+            "record_n": 8097,
+            "qualified_n": 8097,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 3.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder: percentiles gave 2/1.5/1/0/0"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.5,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.25,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sacks": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "SCK",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 12.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 4.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sack_yards": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "SCK YDS",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 91.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 5.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 12.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 21.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 31.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sack_pct": {
+          "direction": "lower_is_better",
+          "kind": "rate",
+          "display": "SCK%",
+          "population": {
+            "record_n": 14504,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 45.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 2.9,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 5.8,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 9.3,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 13.3,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RYDS",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 178.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 35.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 18.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": -1.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RTD",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 3.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_attempts": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RATT",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 26.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 4.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rush_yards_per_att": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "RY/RA",
+          "population": {
+            "record_n": 12530,
+            "qualified_n": 12530,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 70.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 8.8,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3.2,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": -0.8,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "fumbles": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "FUM",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder: percentiles gave 0/0/0/1/2"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "total_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "TOT TD",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.0,
+              "note": "hand-set ladder: percentiles gave 3/2/1/1/0"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder; a 0-TD game falls through to worst"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "total_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "TOT YDS",
+          "population": {
+            "record_n": 16681,
+            "qualified_n": 14504,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 536.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 343.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 292.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 235.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 180.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 126.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "snap_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "SNAP%",
+          "population": {
+            "record_n": 7035,
+            "qualified_n": 7035,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band, not a percentile: took every offensive snap"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 95.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: started and finished"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 80.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: started, came out late"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 50.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: split duty"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 82.5,
+              "note": "fixed band: relief appearance"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        }
+      }
+    },
+    "season_POST": {
+      "granularity": "season",
+      "season_type": "POST",
+      "prorate_denominator_games": null,
+      "stats": {
+        "completions": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "CMP",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 106.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 70.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 48.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 33.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 22.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 16.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "attempts": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "ATT",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 163.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 108.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 80.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 55.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 38.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 29.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "completion_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "CMP%",
+          "population": {
+            "record_n": 347,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 83.3,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 69.5,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 65.5,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 60.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 55.6,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 50.5,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passing_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "YDS",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 1219.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 809.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 588.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 380.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 226.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 162.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "yards_per_completion": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "Y/C",
+          "population": {
+            "record_n": 347,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 24.5,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 13.9,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 12.6,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 11.3,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 10.1,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 8.8,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "yards_per_attempt": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "Y/A",
+          "population": {
+            "record_n": 347,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 15.6,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 8.7,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 7.7,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 6.9,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 5.9,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 4.9,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passing_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "PTD",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 11.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 4.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "td_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "TD%",
+          "population": {
+            "record_n": 347,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 18.1,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 7.4,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 5.6,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3.8,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2.3,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passer_rating": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "RTG",
+          "population": {
+            "record_n": 347,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 148.9,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 108.4,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 97.7,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 84.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 68.3,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 52.5,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "any_a": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "ANY/A",
+          "population": {
+            "record_n": 347,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 15.1,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 8.1,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 7.1,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 5.6,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 4.1,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 2.4,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "qbr": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "QBR",
+          "population": {
+            "record_n": 258,
+            "qualified_n": 258,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 95.5,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 83.2,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 72.4,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 59.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 40.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 22.5,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "interceptions": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "INT",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder: percentiles gave 0/1/1/2/3"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "int_pct": {
+          "direction": "lower_is_better",
+          "kind": "rate",
+          "display": "INT%",
+          "population": {
+            "record_n": 347,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 16.6,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2.5,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 4.1,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 6.7,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "td_int_ratio": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "TD/INT",
+          "population": {
+            "record_n": 269,
+            "qualified_n": 269,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 9.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 3.7,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.5,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sacks": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "SCK",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 21.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 1.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 2.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 3.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 5.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 8.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sack_yards": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "SCK YDS",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 137.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 6.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 12.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 22.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 36.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 52.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sack_pct": {
+          "direction": "lower_is_better",
+          "kind": "rate",
+          "display": "SCK%",
+          "population": {
+            "record_n": 347,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 21.4,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 1.9,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 3.7,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 5.7,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 8.6,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 11.8,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RYDS",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 264.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 82.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 37.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 13.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RTD",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 5.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_attempts": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RATT",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 35.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 15.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 8.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 4.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rush_yards_per_att": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "RY/RA",
+          "population": {
+            "record_n": 323,
+            "qualified_n": 323,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 8.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 5.9,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3.3,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1.2,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "fumbles": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "FUM",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder: percentiles gave 0/0/1/2/2"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "total_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "TOT TD",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 12.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 4.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "total_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "TOT YDS",
+          "population": {
+            "record_n": 407,
+            "qualified_n": 347,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 1239.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 862.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 615.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 413.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 246.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 176.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "snap_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "SNAP%",
+          "population": {
+            "record_n": 171,
+            "qualified_n": 171,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band, not a percentile: took every offensive snap"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 95.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: started and finished"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 80.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: started, came out late"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 50.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: split duty"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 96.0,
+              "note": "fixed band: relief appearance"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        }
+      }
+    },
+    "week_POST": {
+      "granularity": "week",
+      "season_type": "POST",
+      "prorate_denominator_games": null,
+      "stats": {
+        "completions": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "CMP",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 47.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 29.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 25.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 21.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 17.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 13.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "attempts": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "ATT",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 68.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 46.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 40.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 34.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 28.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 22.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "completion_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "CMP%",
+          "population": {
+            "record_n": 626,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 92.8,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 73.9,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 67.4,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 61.1,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 54.8,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 48.7,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passing_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "YDS",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 505.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 346.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 294.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 244.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 186.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 136.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "yards_per_completion": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "Y/C",
+          "population": {
+            "record_n": 626,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 31.6,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 15.2,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 13.1,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 11.3,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 10.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 8.7,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "yards_per_attempt": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "Y/A",
+          "population": {
+            "record_n": 626,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 15.6,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 9.7,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 8.2,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 6.9,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 5.9,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 4.9,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passing_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "PTD",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.0,
+              "note": "hand-set ladder: percentiles gave 3/2/1/1/0"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder; a 0-TD game falls through to worst"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "td_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "TD%",
+          "population": {
+            "record_n": 626,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 9.1,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 6.6,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3.9,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 2.3,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "passer_rating": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "RTG",
+          "population": {
+            "record_n": 626,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 158.3,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 121.8,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 105.2,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 87.7,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 69.1,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 51.1,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "any_a": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "ANY/A",
+          "population": {
+            "record_n": 626,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 18.3,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 9.7,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 7.8,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 5.9,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 4.2,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 2.2,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "qbr": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "QBR",
+          "population": {
+            "record_n": 421,
+            "qualified_n": 421,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 99.2,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 89.8,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 80.7,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 63.5,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 42.4,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 24.4,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "interceptions": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "INT",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder: percentiles gave 0/0/1/1/2"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "int_pct": {
+          "direction": "lower_is_better",
+          "kind": "rate",
+          "display": "INT%",
+          "population": {
+            "record_n": 626,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 16.6,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder: percentiles gave 0/0/2.3/4.2/6.9"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 2.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 3.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.3,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 5.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 4.2,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 8.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 6.9,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "td_int_ratio": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "TD/INT",
+          "population": {
+            "record_n": 354,
+            "qualified_n": 354,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 3.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder: percentiles gave 2/2/1/0.3/0"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 2.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.3,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.25,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sacks": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "SCK",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 9.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 4.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sack_yards": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "SCK YDS",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 82.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 6.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 12.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 21.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 32.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "sack_pct": {
+          "direction": "lower_is_better",
+          "kind": "rate",
+          "display": "SCK%",
+          "population": {
+            "record_n": 626,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 25.9,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 2.9,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 5.6,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 8.7,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 12.5,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RYDS",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 181.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 45.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 24.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 7.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": -1.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RTD",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 3.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rushing_attempts": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "RATT",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 8.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 5.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "rush_yards_per_att": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "RY/RA",
+          "population": {
+            "record_n": 563,
+            "qualified_n": 563,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 28.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 8.7,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 3.2,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 0.6,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": -1.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "fumbles": {
+          "direction": "lower_is_better",
+          "kind": "counting",
+          "display": "FUM",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 5.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "lte",
+              "threshold": 0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder: percentiles gave 0/0/0/1/2"
+            },
+            {
+              "tier": "good",
+              "op": "lte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "lte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "lte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "lte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "total_tds": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "TOT TD",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 6.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 4,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 3.0,
+              "note": "hand-set ladder: percentiles gave 3/2/2/1/0"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 3,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 2,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 2.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 1,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 1.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 0.5,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 0.0,
+              "note": "hand-set ladder"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "total_yards": {
+          "direction": "higher_is_better",
+          "kind": "counting",
+          "display": "TOT YDS",
+          "population": {
+            "record_n": 696,
+            "qualified_n": 626,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 511.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 367.0,
+              "source": "p90",
+              "prorate": "none"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 311.0,
+              "source": "p75",
+              "prorate": "none"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 257.0,
+              "source": "p50",
+              "prorate": "none"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 198.0,
+              "source": "p25",
+              "prorate": "none"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 150.0,
+              "source": "p10",
+              "prorate": "none"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        },
+        "snap_pct": {
+          "direction": "higher_is_better",
+          "kind": "rate",
+          "display": "SNAP%",
+          "population": {
+            "record_n": 310,
+            "qualified_n": 310,
+            "record_min_games": null,
+            "normalized_per_game": false
+          },
+          "tiers": [
+            {
+              "tier": "record",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "max",
+              "prorate": "none"
+            },
+            {
+              "tier": "elite",
+              "op": "gte",
+              "threshold": 100.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band, not a percentile: took every offensive snap"
+            },
+            {
+              "tier": "good",
+              "op": "gte",
+              "threshold": 95.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: started and finished"
+            },
+            {
+              "tier": "average",
+              "op": "gte",
+              "threshold": 80.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: started, came out late"
+            },
+            {
+              "tier": "below",
+              "op": "gte",
+              "threshold": 50.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 100.0,
+              "note": "fixed band: split duty"
+            },
+            {
+              "tier": "poor",
+              "op": "gte",
+              "threshold": 20.0,
+              "source": "milestone",
+              "prorate": "none",
+              "computed": 96.4,
+              "note": "fixed band: relief appearance"
+            },
+            {
+              "tier": "worst",
+              "op": "always",
+              "threshold": null,
+              "source": "fallback",
+              "prorate": "none"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "version": "v2025"
+}

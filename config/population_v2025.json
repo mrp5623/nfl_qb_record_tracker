@@ -1,0 +1,758 @@
+[
+  {
+    "view": "season_REG",
+    "season": 1999,
+    "total": 82,
+    "qualified": 64,
+    "pct": 78.0
+  },
+  {
+    "view": "season_REG",
+    "season": 2000,
+    "total": 83,
+    "qualified": 56,
+    "pct": 67.5
+  },
+  {
+    "view": "season_REG",
+    "season": 2001,
+    "total": 76,
+    "qualified": 58,
+    "pct": 76.3
+  },
+  {
+    "view": "season_REG",
+    "season": 2002,
+    "total": 75,
+    "qualified": 55,
+    "pct": 73.3
+  },
+  {
+    "view": "season_REG",
+    "season": 2003,
+    "total": 78,
+    "qualified": 59,
+    "pct": 75.6
+  },
+  {
+    "view": "season_REG",
+    "season": 2004,
+    "total": 78,
+    "qualified": 60,
+    "pct": 76.9
+  },
+  {
+    "view": "season_REG",
+    "season": 2005,
+    "total": 81,
+    "qualified": 62,
+    "pct": 76.5
+  },
+  {
+    "view": "season_REG",
+    "season": 2006,
+    "total": 75,
+    "qualified": 54,
+    "pct": 72.0
+  },
+  {
+    "view": "season_REG",
+    "season": 2007,
+    "total": 84,
+    "qualified": 66,
+    "pct": 78.6
+  },
+  {
+    "view": "season_REG",
+    "season": 2008,
+    "total": 76,
+    "qualified": 55,
+    "pct": 72.4
+  },
+  {
+    "view": "season_REG",
+    "season": 2009,
+    "total": 77,
+    "qualified": 52,
+    "pct": 67.5
+  },
+  {
+    "view": "season_REG",
+    "season": 2010,
+    "total": 80,
+    "qualified": 64,
+    "pct": 80.0
+  },
+  {
+    "view": "season_REG",
+    "season": 2011,
+    "total": 75,
+    "qualified": 56,
+    "pct": 74.7
+  },
+  {
+    "view": "season_REG",
+    "season": 2012,
+    "total": 70,
+    "qualified": 49,
+    "pct": 70.0
+  },
+  {
+    "view": "season_REG",
+    "season": 2013,
+    "total": 67,
+    "qualified": 52,
+    "pct": 77.6
+  },
+  {
+    "view": "season_REG",
+    "season": 2014,
+    "total": 74,
+    "qualified": 55,
+    "pct": 74.3
+  },
+  {
+    "view": "season_REG",
+    "season": 2015,
+    "total": 74,
+    "qualified": 57,
+    "pct": 77.0
+  },
+  {
+    "view": "season_REG",
+    "season": 2016,
+    "total": 71,
+    "qualified": 54,
+    "pct": 76.1
+  },
+  {
+    "view": "season_REG",
+    "season": 2017,
+    "total": 73,
+    "qualified": 56,
+    "pct": 76.7
+  },
+  {
+    "view": "season_REG",
+    "season": 2018,
+    "total": 72,
+    "qualified": 55,
+    "pct": 76.4
+  },
+  {
+    "view": "season_REG",
+    "season": 2019,
+    "total": 71,
+    "qualified": 55,
+    "pct": 77.5
+  },
+  {
+    "view": "season_REG",
+    "season": 2020,
+    "total": 82,
+    "qualified": 61,
+    "pct": 74.4
+  },
+  {
+    "view": "season_REG",
+    "season": 2021,
+    "total": 81,
+    "qualified": 59,
+    "pct": 72.8
+  },
+  {
+    "view": "season_REG",
+    "season": 2022,
+    "total": 83,
+    "qualified": 64,
+    "pct": 77.1
+  },
+  {
+    "view": "season_REG",
+    "season": 2023,
+    "total": 81,
+    "qualified": 62,
+    "pct": 76.5
+  },
+  {
+    "view": "season_REG",
+    "season": 2024,
+    "total": 78,
+    "qualified": 61,
+    "pct": 78.2
+  },
+  {
+    "view": "season_REG",
+    "season": 2025,
+    "total": 81,
+    "qualified": 60,
+    "pct": 74.1
+  },
+  {
+    "view": "season_POST",
+    "season": 1999,
+    "total": 15,
+    "qualified": 14,
+    "pct": 93.3
+  },
+  {
+    "view": "season_POST",
+    "season": 2000,
+    "total": 17,
+    "qualified": 13,
+    "pct": 76.5
+  },
+  {
+    "view": "season_POST",
+    "season": 2001,
+    "total": 17,
+    "qualified": 13,
+    "pct": 76.5
+  },
+  {
+    "view": "season_POST",
+    "season": 2002,
+    "total": 16,
+    "qualified": 12,
+    "pct": 75.0
+  },
+  {
+    "view": "season_POST",
+    "season": 2003,
+    "total": 14,
+    "qualified": 13,
+    "pct": 92.9
+  },
+  {
+    "view": "season_POST",
+    "season": 2004,
+    "total": 14,
+    "qualified": 12,
+    "pct": 85.7
+  },
+  {
+    "view": "season_POST",
+    "season": 2005,
+    "total": 17,
+    "qualified": 12,
+    "pct": 70.6
+  },
+  {
+    "view": "season_POST",
+    "season": 2006,
+    "total": 16,
+    "qualified": 12,
+    "pct": 75.0
+  },
+  {
+    "view": "season_POST",
+    "season": 2007,
+    "total": 13,
+    "qualified": 12,
+    "pct": 92.3
+  },
+  {
+    "view": "season_POST",
+    "season": 2008,
+    "total": 14,
+    "qualified": 12,
+    "pct": 85.7
+  },
+  {
+    "view": "season_POST",
+    "season": 2009,
+    "total": 14,
+    "qualified": 13,
+    "pct": 92.9
+  },
+  {
+    "view": "season_POST",
+    "season": 2010,
+    "total": 15,
+    "qualified": 13,
+    "pct": 86.7
+  },
+  {
+    "view": "season_POST",
+    "season": 2011,
+    "total": 12,
+    "qualified": 12,
+    "pct": 100.0
+  },
+  {
+    "view": "season_POST",
+    "season": 2012,
+    "total": 13,
+    "qualified": 13,
+    "pct": 100.0
+  },
+  {
+    "view": "season_POST",
+    "season": 2013,
+    "total": 13,
+    "qualified": 12,
+    "pct": 92.3
+  },
+  {
+    "view": "season_POST",
+    "season": 2014,
+    "total": 14,
+    "qualified": 12,
+    "pct": 85.7
+  },
+  {
+    "view": "season_POST",
+    "season": 2015,
+    "total": 16,
+    "qualified": 12,
+    "pct": 75.0
+  },
+  {
+    "view": "season_POST",
+    "season": 2016,
+    "total": 13,
+    "qualified": 12,
+    "pct": 92.3
+  },
+  {
+    "view": "season_POST",
+    "season": 2017,
+    "total": 16,
+    "qualified": 12,
+    "pct": 75.0
+  },
+  {
+    "view": "season_POST",
+    "season": 2018,
+    "total": 12,
+    "qualified": 12,
+    "pct": 100.0
+  },
+  {
+    "view": "season_POST",
+    "season": 2019,
+    "total": 14,
+    "qualified": 12,
+    "pct": 85.7
+  },
+  {
+    "view": "season_POST",
+    "season": 2020,
+    "total": 19,
+    "qualified": 15,
+    "pct": 78.9
+  },
+  {
+    "view": "season_POST",
+    "season": 2021,
+    "total": 15,
+    "qualified": 14,
+    "pct": 93.3
+  },
+  {
+    "view": "season_POST",
+    "season": 2022,
+    "total": 17,
+    "qualified": 15,
+    "pct": 88.2
+  },
+  {
+    "view": "season_POST",
+    "season": 2023,
+    "total": 15,
+    "qualified": 14,
+    "pct": 93.3
+  },
+  {
+    "view": "season_POST",
+    "season": 2024,
+    "total": 19,
+    "qualified": 14,
+    "pct": 73.7
+  },
+  {
+    "view": "season_POST",
+    "season": 2025,
+    "total": 17,
+    "qualified": 15,
+    "pct": 88.2
+  },
+  {
+    "view": "week_REG",
+    "season": 1999,
+    "total": 636,
+    "qualified": 543,
+    "pct": 85.4
+  },
+  {
+    "view": "week_REG",
+    "season": 2000,
+    "total": 634,
+    "qualified": 520,
+    "pct": 82.0
+  },
+  {
+    "view": "week_REG",
+    "season": 2001,
+    "total": 597,
+    "qualified": 519,
+    "pct": 86.9
+  },
+  {
+    "view": "week_REG",
+    "season": 2002,
+    "total": 609,
+    "qualified": 531,
+    "pct": 87.2
+  },
+  {
+    "view": "week_REG",
+    "season": 2003,
+    "total": 620,
+    "qualified": 545,
+    "pct": 87.9
+  },
+  {
+    "view": "week_REG",
+    "season": 2004,
+    "total": 602,
+    "qualified": 528,
+    "pct": 87.7
+  },
+  {
+    "view": "week_REG",
+    "season": 2005,
+    "total": 618,
+    "qualified": 542,
+    "pct": 87.7
+  },
+  {
+    "view": "week_REG",
+    "season": 2006,
+    "total": 603,
+    "qualified": 533,
+    "pct": 88.4
+  },
+  {
+    "view": "week_REG",
+    "season": 2007,
+    "total": 640,
+    "qualified": 549,
+    "pct": 85.8
+  },
+  {
+    "view": "week_REG",
+    "season": 2008,
+    "total": 598,
+    "qualified": 532,
+    "pct": 89.0
+  },
+  {
+    "view": "week_REG",
+    "season": 2009,
+    "total": 649,
+    "qualified": 537,
+    "pct": 82.7
+  },
+  {
+    "view": "week_REG",
+    "season": 2010,
+    "total": 608,
+    "qualified": 538,
+    "pct": 88.5
+  },
+  {
+    "view": "week_REG",
+    "season": 2011,
+    "total": 604,
+    "qualified": 528,
+    "pct": 87.4
+  },
+  {
+    "view": "week_REG",
+    "season": 2012,
+    "total": 600,
+    "qualified": 524,
+    "pct": 87.3
+  },
+  {
+    "view": "week_REG",
+    "season": 2013,
+    "total": 583,
+    "qualified": 517,
+    "pct": 88.7
+  },
+  {
+    "view": "week_REG",
+    "season": 2014,
+    "total": 596,
+    "qualified": 528,
+    "pct": 88.6
+  },
+  {
+    "view": "week_REG",
+    "season": 2015,
+    "total": 602,
+    "qualified": 528,
+    "pct": 87.7
+  },
+  {
+    "view": "week_REG",
+    "season": 2016,
+    "total": 598,
+    "qualified": 527,
+    "pct": 88.1
+  },
+  {
+    "view": "week_REG",
+    "season": 2017,
+    "total": 592,
+    "qualified": 530,
+    "pct": 89.5
+  },
+  {
+    "view": "week_REG",
+    "season": 2018,
+    "total": 602,
+    "qualified": 527,
+    "pct": 87.5
+  },
+  {
+    "view": "week_REG",
+    "season": 2019,
+    "total": 589,
+    "qualified": 523,
+    "pct": 88.8
+  },
+  {
+    "view": "week_REG",
+    "season": 2020,
+    "total": 622,
+    "qualified": 534,
+    "pct": 85.9
+  },
+  {
+    "view": "week_REG",
+    "season": 2021,
+    "total": 655,
+    "qualified": 563,
+    "pct": 86.0
+  },
+  {
+    "view": "week_REG",
+    "season": 2022,
+    "total": 633,
+    "qualified": 557,
+    "pct": 88.0
+  },
+  {
+    "view": "week_REG",
+    "season": 2023,
+    "total": 663,
+    "qualified": 572,
+    "pct": 86.3
+  },
+  {
+    "view": "week_REG",
+    "season": 2024,
+    "total": 664,
+    "qualified": 568,
+    "pct": 85.5
+  },
+  {
+    "view": "week_REG",
+    "season": 2025,
+    "total": 664,
+    "qualified": 561,
+    "pct": 84.5
+  },
+  {
+    "view": "week_POST",
+    "season": 1999,
+    "total": 25,
+    "qualified": 23,
+    "pct": 92.0
+  },
+  {
+    "view": "week_POST",
+    "season": 2000,
+    "total": 30,
+    "qualified": 24,
+    "pct": 80.0
+  },
+  {
+    "view": "week_POST",
+    "season": 2001,
+    "total": 27,
+    "qualified": 23,
+    "pct": 85.2
+  },
+  {
+    "view": "week_POST",
+    "season": 2002,
+    "total": 26,
+    "qualified": 22,
+    "pct": 84.6
+  },
+  {
+    "view": "week_POST",
+    "season": 2003,
+    "total": 24,
+    "qualified": 23,
+    "pct": 95.8
+  },
+  {
+    "view": "week_POST",
+    "season": 2004,
+    "total": 24,
+    "qualified": 22,
+    "pct": 91.7
+  },
+  {
+    "view": "week_POST",
+    "season": 2005,
+    "total": 27,
+    "qualified": 22,
+    "pct": 81.5
+  },
+  {
+    "view": "week_POST",
+    "season": 2006,
+    "total": 26,
+    "qualified": 22,
+    "pct": 84.6
+  },
+  {
+    "view": "week_POST",
+    "season": 2007,
+    "total": 23,
+    "qualified": 22,
+    "pct": 95.7
+  },
+  {
+    "view": "week_POST",
+    "season": 2008,
+    "total": 24,
+    "qualified": 22,
+    "pct": 91.7
+  },
+  {
+    "view": "week_POST",
+    "season": 2009,
+    "total": 24,
+    "qualified": 23,
+    "pct": 95.8
+  },
+  {
+    "view": "week_POST",
+    "season": 2010,
+    "total": 25,
+    "qualified": 23,
+    "pct": 92.0
+  },
+  {
+    "view": "week_POST",
+    "season": 2011,
+    "total": 22,
+    "qualified": 22,
+    "pct": 100.0
+  },
+  {
+    "view": "week_POST",
+    "season": 2012,
+    "total": 23,
+    "qualified": 23,
+    "pct": 100.0
+  },
+  {
+    "view": "week_POST",
+    "season": 2013,
+    "total": 23,
+    "qualified": 22,
+    "pct": 95.7
+  },
+  {
+    "view": "week_POST",
+    "season": 2014,
+    "total": 24,
+    "qualified": 22,
+    "pct": 91.7
+  },
+  {
+    "view": "week_POST",
+    "season": 2015,
+    "total": 28,
+    "qualified": 22,
+    "pct": 78.6
+  },
+  {
+    "view": "week_POST",
+    "season": 2016,
+    "total": 23,
+    "qualified": 22,
+    "pct": 95.7
+  },
+  {
+    "view": "week_POST",
+    "season": 2017,
+    "total": 26,
+    "qualified": 22,
+    "pct": 84.6
+  },
+  {
+    "view": "week_POST",
+    "season": 2018,
+    "total": 22,
+    "qualified": 22,
+    "pct": 100.0
+  },
+  {
+    "view": "week_POST",
+    "season": 2019,
+    "total": 25,
+    "qualified": 21,
+    "pct": 84.0
+  },
+  {
+    "view": "week_POST",
+    "season": 2020,
+    "total": 31,
+    "qualified": 27,
+    "pct": 87.1
+  },
+  {
+    "view": "week_POST",
+    "season": 2021,
+    "total": 27,
+    "qualified": 26,
+    "pct": 96.3
+  },
+  {
+    "view": "week_POST",
+    "season": 2022,
+    "total": 29,
+    "qualified": 26,
+    "pct": 89.7
+  },
+  {
+    "view": "week_POST",
+    "season": 2023,
+    "total": 27,
+    "qualified": 26,
+    "pct": 96.3
+  },
+  {
+    "view": "week_POST",
+    "season": 2024,
+    "total": 33,
+    "qualified": 26,
+    "pct": 78.8
+  },
+  {
+    "view": "week_POST",
+    "season": 2025,
+    "total": 28,
+    "qualified": 26,
+    "pct": 92.9
+  }
+]
