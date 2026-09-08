@@ -17,6 +17,8 @@ Usage:
 
 import json
 import os
+import urllib.request
+import sys
 from pathlib import Path
 from datetime import datetime
 
@@ -80,10 +82,20 @@ on conflict (team_abbr) do update set
 # handling. The id column is bigserial, so the database assigns it.
 INSERT_INGEST_LOG_SQL = """
 insert into ingest_log (
-    job, season, rows_written, status, error, started_at, completed_at
+    job, season, rows_written, status, error, started_at, completed_at, source_timestamp
 )
-values (%s, %s, %s, %s, %s, %s, %s)
+values (%s, %s, %s, %s, %s, %s, %s, %s)
 """
+
+GET_SOURCE_TIMESTAMP_SQL = """
+select source_timestamp from ingest_log
+where status = 'success' and source_timestamp is not null
+order by completed_at desc nulls last limit 1
+"""
+
+NFLVERSE_TIMESTAMP_URL = (
+    "https://github.com/nflverse/nflverse-data/releases/download/{release}/timestamp.json"
+)
 
 
 def get_connection() -> psycopg.Connection:
@@ -152,12 +164,13 @@ def write_ingest_log(
     error: str | None,
     started_at: datetime,
     completed_at: datetime | None,
+    source_timestamp: str | None,
 ) -> None:
     """Record one ingest run. `status` must be 'success' or 'failed'."""
     with conn.cursor() as cur:
         cur.execute(
             INSERT_INGEST_LOG_SQL,
-            (job, season, rows_written, status, error, started_at, completed_at),
+            (job, season, rows_written, status, error, started_at, completed_at, source_timestamp),
         )
 
 
@@ -352,7 +365,7 @@ def upsert_player_season(conn: psycopg.Connection, df: pl.DataFrame) -> int:
     """Insert or update season rows. Returns rows written."""
     rows = _rows_from(df, SEASON_COLUMNS)
     with conn.cursor() as cur:
-        cur.executemany(UPSERT_SEASON_SQL, rows)
+        cur.executemany(UPSERT_SEASON_SQL, rows) # pyright: ignore[reportArgumentType]
     return len(rows)
 
 
@@ -360,7 +373,7 @@ def upsert_player_week(conn: psycopg.Connection, df: pl.DataFrame) -> int:
     """Insert or update week rows. Returns rows written."""
     rows = _rows_from(df, WEEK_COLUMNS)
     with conn.cursor() as cur:
-        cur.executemany(UPSERT_WEEK_SQL, rows)
+        cur.executemany(UPSERT_WEEK_SQL, rows) # pyright: ignore[reportArgumentType]
     return len(rows)
 
 
@@ -631,11 +644,37 @@ def add_derived_columns(df: pl.DataFrame) -> pl.DataFrame:
         out.append(r)
     return pl.DataFrame(out, infer_schema_length=None)
 
+def last_ingested_timestamp(conn: psycopg.Connection) -> str|None:
+    with conn.cursor() as cur:
+        cur.execute(GET_SOURCE_TIMESTAMP_SQL)
+        row = cur.fetchone()
+    return row[0] if row else None
+
+
+def nflverse_timestamp(release: str = "stats_player", timeout: float = 30.0) -> str:
+   
+    url = NFLVERSE_TIMESTAMP_URL.format(release=release)
+   
+    with urllib.request.urlopen(url, timeout=timeout) as response:
+       
+        data = json.load(response)
+    return data["last_updated"]
+
 
 if __name__ == "__main__":
     from ingest import schedule, sources
 
     started = datetime.now()
+    timestamp = nflverse_timestamp()
+
+    if "--if-changed" in sys.argv:
+        with get_connection() as conn:
+            if timestamp == last_ingested_timestamp(conn):
+                print(f"Stats unchanged since {timestamp}. Skipping.")
+                raise SystemExit(0)
+
+
+
     players = sources.fetch_players()
     schedules = sources.fetch_schedules(True)
     final = final_seasons(schedules)
@@ -672,6 +711,6 @@ if __name__ == "__main__":
         write_ingest_log(
             conn, job="full_load", season=None, rows_written=n_season + n_week,
             status="success", error=None, started_at=started,
-            completed_at=datetime.now(),
+            completed_at=datetime.now(), source_timestamp= timestamp
         )
     print(f"season rows: {n_season}, week rows: {n_week}")

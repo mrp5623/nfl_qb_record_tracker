@@ -1,0 +1,1 @@
+alter table ingest_log add column source_timestamp text;

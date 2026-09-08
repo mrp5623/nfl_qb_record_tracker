@@ -1,0 +1,24 @@
+name: Refresh data
+
+on:
+  schedule:
+    - cron: "0 * * 9-12,1,2 *"
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency:
+        group: refresh-data
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install -e .
+      - name: Refresh if nflverse published new data
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python -m ingest.load --if-changed
