@@ -117,6 +117,22 @@ def normalize_teams(df: pl.DataFrame, col: str) -> pl.DataFrame:
     return df.with_columns(pl.col(col).replace(TEAM_RELOCATIONS))
 
 
+def _load_every_season(loader, first_season: int, label: str, **kwargs) -> pl.DataFrame:
+    
+    try:
+        return loader(seasons=True, **kwargs)
+    except ConnectionError as exc:
+        status = getattr(getattr(exc.__cause__, "response", None), "status_code", None)
+        if status != 404:
+            raise
+        current = nfl.get_current_season()
+        print(
+            f"warning: nflverse has not published {current} {label} yet; "
+            f"loading {first_season}-{current - 1}."
+        )
+        return loader(seasons=list(range(first_season, current)), **kwargs)
+
+
 def filter_quarterbacks(df: pl.DataFrame) -> pl.DataFrame:
     """Keep QBs by listed position, never by whether they threw a pass.
 
@@ -132,7 +148,13 @@ def fetch_player_stats(
 ) -> pl.DataFrame:
     """QB passing and rushing stats, one row per player-week or player-season."""
     _ensure_cache_configured()
-    df = nfl.load_player_stats(seasons=seasons, summary_level=summary_level)
+    if seasons is True:
+        df = _load_every_season(
+            nfl.load_player_stats, 1999, f"{summary_level} stats",
+            summary_level=summary_level,
+        )
+    else:
+        df = nfl.load_player_stats(seasons=seasons, summary_level=summary_level)
 
     source = "player_stats_week" if summary_level == "week" else "player_stats_season"
     verify_columns(df, source)
@@ -174,7 +196,11 @@ def fetch_schedules(seasons: list[int] | int | bool = True) -> pl.DataFrame:
 def fetch_snap_counts(seasons: list[int] | int | bool) -> pl.DataFrame:
     """Per-game snap counts, 2012+. Season totals require aggregation."""
     _ensure_cache_configured()
-    df = nfl.load_snap_counts(seasons=seasons)
+    if seasons is True:
+        df = _load_every_season(nfl.load_snap_counts, 2012, "snap counts")
+    else:
+        df = nfl.load_snap_counts(seasons=seasons)
+
     verify_columns(df, "snap_counts")
     return normalize_teams(df, "team")
 
