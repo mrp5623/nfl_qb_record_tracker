@@ -67,6 +67,11 @@ on conflict (player_id) do update set
     position     = excluded.position,
     birth_date   = excluded.birth_date,
     rookie_year  = excluded.rookie_year
+where (player.pfr_id, player.espn_id, player.display_name,
+       player.position, player.birth_date, player.rookie_year)
+   is distinct from
+      (excluded.pfr_id, excluded.espn_id, excluded.display_name,
+       excluded.position, excluded.birth_date, excluded.rookie_year)
 """
 
 UPSERT_TEAM_SQL = """
@@ -76,6 +81,9 @@ on conflict (team_abbr) do update set
     team_name       = excluded.team_name,
     primary_color   = excluded.primary_color,
     secondary_color = excluded.secondary_color
+where (team.team_name, team.primary_color, team.secondary_color)
+   is distinct from
+      (excluded.team_name, excluded.primary_color, excluded.secondary_color)
 """
 
 # ingest_log is append-only history, so it is a plain insert with no conflict
@@ -340,16 +348,36 @@ def _upsert_sql(table: str, columns: list[str], key: list[str]) -> str:
     own constants, never from data. The values still go through %s placeholders,
     which is the part that must never be built by string formatting.
     """
+    non_key = [c for c in columns if c not in key]
     placeholders = ", ".join(["%s"] * len(columns))
     column_list = ", ".join(columns)
-    updates = ",\n    ".join(f"{c} = excluded.{c}" for c in columns if c not in key)
+    updates = ",\n    ".join(f"{c} = excluded.{c}" for c in non_key)
     conflict_key = ", ".join(key)
+
+    # Only write a row that actually differs.
+    #
+    # Without this, every run rewrote all 45,000 rows to change the handful that
+    # moved. Postgres has no in-place update: each one writes a whole new row
+    # version, marks the old one dead, touches every index, and leaves work for
+    # autovacuum -- roughly 66 MB of heap churn per run, which is what depleted
+    # the Supabase disk IO budget.
+    #
+    # `is distinct from` on row constructors is null-safe (plain `<>` yields
+    # NULL if either side is NULL, which would skip real changes involving
+    # nulls) and compares by value, so there is no tolerance in which a genuine
+    # change could hide. jsonb comparison is order-insensitive, which makes the
+    # three JSONB columns stable across runs rather than spuriously different.
+    mine = ", ".join(f"{table}.{c}" for c in non_key)
+    theirs = ", ".join(f"excluded.{c}" for c in non_key)
+
     return (
         f"insert into {table} ({column_list})\n"
         f"values ({placeholders})\n"
         f"on conflict ({conflict_key}) do update set\n"
         f"    {updates},\n"
-        f"    updated_at = now()"
+        f"    updated_at = now()\n"
+        f"where ({mine})\n"
+        f"   is distinct from ({theirs})"
     )
 
 
