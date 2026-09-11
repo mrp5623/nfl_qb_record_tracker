@@ -147,9 +147,13 @@ def test_totals():
 
 # --- sentinels (Task 13) -----------------------------------------------------
 
+# A fully published row: box score plus both provider-supplied values. Without
+# qbr and offensive_snaps this silently stood for a row where ESPN and PFR had
+# published nothing, which every sentinel test was then asserting against.
 PLAYED = {
     "attempts": 42, "completions": 27, "interceptions": 1,
-    "sacks": 2, "rushing_attempts": 3, "team_offensive_snaps": 70,
+    "sacks": 2, "rushing_attempts": 3,
+    "qbr": 65.0, "offensive_snaps": 70, "team_offensive_snaps": 70,
 }
 
 
@@ -202,3 +206,35 @@ def test_no_attempts_is_incalculable_not_perfect():
     nothing perfect about that. Documented tie-break: attempts win."""
     s = sentinels_for_row(_with(attempts=0, completions=0, interceptions=0), 2025)
     assert s["td_int_ratio"] == Sentinel.INCALCULABLE
+
+
+# --- provider gaps ----------------------------------------------------------
+
+
+@pytest.mark.parametrize("stat, column", [("qbr", "qbr"), ("snap_pct", "offensive_snaps")])
+def test_provider_gap_is_not_recorded(stat, column):
+    """A value ESPN or PFR never sent is not a zero, and not incalculable."""
+    s = sentinels_for_row(_with(**{column: None}), 2026)
+    assert s[stat] == Sentinel.NOT_RECORDED
+
+
+def test_missing_snap_count_is_not_mislabelled_incalculable():
+    """The ordering bug the provider-gap check exists to prevent.
+
+    PFR publishes player and team snap counts together, so before they arrive
+    both are null -- and a null team total used to read as a zero denominator.
+    """
+    s = sentinels_for_row(_with(offensive_snaps=None, team_offensive_snaps=None), 2026)
+    assert s["snap_pct"] == Sentinel.NOT_RECORDED
+    assert s["snap_pct"] != Sentinel.INCALCULABLE
+
+
+def test_zero_qbr_is_a_value_not_a_gap():
+    """0.0 is a real, dreadful game. Only an absent value is a gap."""
+    assert "qbr" not in sentinels_for_row(_with(qbr=0.0), 2026)
+
+
+def test_published_values_carry_no_sentinel():
+    s = sentinels_for_row(PLAYED, 2026)
+    assert "qbr" not in s
+    assert "snap_pct" not in s

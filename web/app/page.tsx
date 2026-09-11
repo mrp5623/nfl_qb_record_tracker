@@ -94,8 +94,9 @@ export default async function Page({
         <p className="mt-1">
           <span className="italic">∞</span> perfect (no interceptions) ·{" "}
           <span className="italic">—</span> incalculable (divide by zero) ·{" "}
-          <span>·</span> not recorded that season (QBR from 2006, snap% from
-          2013)
+          <span>·</span> not recorded — QBR begins in 2006 and snap% in 2013;
+          after that, ESPN only releases a season QBR above its own threshold,
+          and snap counts arrive the day after a game
         </p>
       </footer>
     </main>

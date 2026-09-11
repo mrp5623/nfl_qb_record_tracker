@@ -156,6 +156,19 @@ _RATE_DENOMINATORS: dict[str, tuple[str, ...]] = {
 # Revisit if nflverse ever backfills 2012.
 _ERA_GATES: dict[str, int] = {"qbr": 2006, "snap_pct": 2013}
 
+# stat -> the column an outside provider has to supply for the stat to exist.
+#
+# These two are not derived from the box score; they arrive from separate feeds
+# that routinely leave gaps. ESPN only publishes a season QBR for quarterbacks
+# above its own qualification bar -- roughly half of every season's QBs have
+# none, even with 250+ attempts -- and Pro-Football-Reference snap counts land
+# around noon ET the day after a game, well behind the rest of the stats.
+#
+# A gap here is labelled NOT_RECORDED, the same as a pre-era season: from the
+# reader's side both mean "no figure was recorded for this", and one label is
+# simpler than two that differ only in whose fault it is.
+_PUBLISHED_BY: dict[str, str] = {"qbr": "qbr", "snap_pct": "offensive_snaps"}
+
 
 def sentinels_for_row(row: dict, season: int) -> dict[str, str]:
     """Return {stat: sentinel} for every cell that has no number.
@@ -168,6 +181,15 @@ def sentinels_for_row(row: dict, season: int) -> dict[str, str]:
     # it simply was not recorded.
     for stat, first_season in _ERA_GATES.items():
         if season < first_season:
+            found[stat] = Sentinel.NOT_RECORDED.value
+
+    # Then provider gaps. This must precede the denominator check: a missing snap
+    # count leaves team_offensive_snaps null too, which would otherwise read as
+    # a zero denominator and be mislabelled INCALCULABLE.
+    #
+    # `is None` rather than falsiness -- a QBR of 0.0 is a real, terrible game.
+    for stat, column in _PUBLISHED_BY.items():
+        if stat not in found and row.get(column) is None:
             found[stat] = Sentinel.NOT_RECORDED.value
 
     for stat, denominators in _RATE_DENOMINATORS.items():
