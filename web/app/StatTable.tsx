@@ -17,6 +17,11 @@ type Props = {
   stats: Stat[];
   mode: "record" | "performance";
   granularity: "season" | "week";
+  /**
+   * Stats whose provider has not caught up with the box score yet, mapped to
+   * the explanation shown on hover. Computed server-side from data_freshness.
+   */
+  pending?: Record<string, string>;
 };
 
 /**
@@ -26,7 +31,7 @@ type Props = {
  * so the whole view is already in memory and a round trip to re-sort would be
  * slower and worse. The data itself is fetched on the server.
  */
-export default function StatTable({ rows, stats, mode, granularity }: Props) {
+export default function StatTable({ rows, stats, mode, granularity, pending = {} }: Props) {
   const [sortKey, setSortKey] = useState<string>("passing_yards");
   const [asc, setAsc] = useState(false);
 
@@ -104,9 +109,12 @@ export default function StatTable({ rows, stats, mode, granularity }: Props) {
                 onClick={() => toggleSort(s.field)}
                 active={sortKey === s.field}
                 asc={asc}
-                title={`${s.field} — ${s.direction.replace(/_/g, " ")}`}
+                title={pending[s.field] ?? `${s.field} — ${s.direction.replace(/_/g, " ")}`}
               >
                 {s.display}
+                {pending[s.field] ? (
+                  <span className="text-amber-600 dark:text-amber-400">*</span>
+                ) : null}
               </Th>
             ))}
           </tr>

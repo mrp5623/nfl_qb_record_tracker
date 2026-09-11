@@ -410,6 +410,95 @@ def upsert_player_week(conn: psycopg.Connection, df: pl.DataFrame) -> int:
 
 
 # ---------------------------------------------------------------------------
+# Data freshness: which games are still waiting on snap counts or QBR
+# ---------------------------------------------------------------------------
+
+FRESHNESS_COLUMNS = [
+    "season", "season_type", "week", "games",
+    "games_missing_snaps", "games_missing_qbr",
+    "latest_missing_snaps_kickoff", "latest_missing_qbr_kickoff",
+]
+UPSERT_FRESHNESS_SQL = _upsert_sql(
+    "data_freshness", FRESHNESS_COLUMNS, ["season", "season_type", "week"]
+)
+
+
+def data_freshness(
+    week_rows: pl.DataFrame, game_teams: pl.DataFrame, schedules: pl.DataFrame
+) -> pl.DataFrame:
+    """Per week: how many games lack snap counts or QBR, and the latest such kickoff.
+
+    Coverage is decided per game from the already-joined week rows, which is
+    what makes it trustworthy:
+
+      * snap counts and QBR are attached by player and week, never by team.
+        ESPN files a traded quarterback under his end-of-season team for every
+        week -- Joe Flacco's 2025 weeks 1-4 for Cleveland appear as Cincinnati
+        -- so matching QBR to games by team would invent missing games.
+      * team_abbr here comes from the box score, so each row lands on the game
+        it was actually played in.
+
+    A game counts as covered if ANY player in it has the value. Providers
+    publish a whole game at once, whereas an individual blank is often
+    permanent (ESPN withholds QBR below its threshold).
+
+    The latest missing kickoff is returned rather than a boolean so the reader
+    can compare it to the clock. See schema5_data_freshness.sql for why.
+    """
+    games = (
+        week_rows.select(
+            "season", "season_type", "week", "team_abbr", "offensive_snaps", "qbr"
+        )
+        .join(
+            game_teams.select("game_id", "season", "season_type", "week", "team_abbr"),
+            on=["season", "season_type", "week", "team_abbr"],
+            how="inner",
+        )
+        .group_by("game_id", "season", "season_type", "week")
+        .agg(
+            pl.col("offensive_snaps").is_not_null().any().alias("has_snaps"),
+            pl.col("qbr").is_not_null().any().alias("has_qbr"),
+        )
+    )
+
+    # nflverse schedules give kickoff as Eastern local date and time.
+    kickoffs = schedules.select(
+        "game_id",
+        pl.concat_str([pl.col("gameday"), pl.col("gametime")], separator=" ")
+        .str.to_datetime(
+            "%Y-%m-%d %H:%M", strict=False,
+            time_zone="America/New_York", ambiguous="earliest",
+        )
+        .dt.convert_time_zone("UTC")
+        .alias("kickoff"),
+    )
+
+    return (
+        games.join(kickoffs, on="game_id", how="left")
+        .group_by("season", "season_type", "week")
+        .agg(
+            pl.len().cast(pl.Int32).alias("games"),
+            (~pl.col("has_snaps")).sum().cast(pl.Int32).alias("games_missing_snaps"),
+            (~pl.col("has_qbr")).sum().cast(pl.Int32).alias("games_missing_qbr"),
+            pl.col("kickoff").filter(~pl.col("has_snaps")).max()
+            .alias("latest_missing_snaps_kickoff"),
+            pl.col("kickoff").filter(~pl.col("has_qbr")).max()
+            .alias("latest_missing_qbr_kickoff"),
+        )
+        .sort("season", "season_type", "week")
+        .select(FRESHNESS_COLUMNS)
+    )
+
+
+def upsert_data_freshness(conn: psycopg.Connection, df: pl.DataFrame) -> int:
+    """Insert or update freshness rows. Returns rows written."""
+    rows = _rows_from(df, FRESHNESS_COLUMNS)
+    with conn.cursor() as cur:
+        cur.executemany(UPSERT_FRESHNESS_SQL, rows)  # pyright: ignore[reportArgumentType]
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
 # Task 24: grading backfill
 # ---------------------------------------------------------------------------
 
@@ -767,12 +856,14 @@ if __name__ == "__main__":
     )
     season_rows = add_grade_columns(season_rows, thresholds_doc, "season")
     week_rows = add_grade_columns(week_rows, thresholds_doc, "week")
+    freshness = data_freshness(week_rows, game_teams, schedules)
 
     with get_connection() as conn:
         upsert_teams(conn, sources.fetch_teams())
         upsert_players(conn, players)
         n_season = upsert_player_season(conn, season_rows)
         n_week = upsert_player_week(conn, week_rows)
+        upsert_data_freshness(conn, freshness)
         write_ingest_log(
             conn, job="full_load", season=None, rows_written=n_season + n_week,
             status="success", error=None, started_at=started,

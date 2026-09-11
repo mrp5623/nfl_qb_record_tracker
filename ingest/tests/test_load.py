@@ -1,4 +1,4 @@
-"""Refresh guard tests.
+"""Refresh guard and data freshness tests.
 
 The guard fails silently in the dangerous direction: if it ever reads a stored
 value as "unchanged" when something moved, every scheduled run skips, nothing
@@ -6,8 +6,11 @@ errors, and the site quietly stops updating mid-season.
 """
 
 import json
+from datetime import datetime, timezone
 
-from ingest.load import WATCHED_RELEASES, changed_releases
+import polars as pl
+
+from ingest.load import WATCHED_RELEASES, changed_releases, data_freshness
 
 CURRENT = {
     "stats_player": "2026-09-11 10:03:41 EDT",
@@ -43,3 +46,76 @@ def test_json_that_is_not_an_object_loads_everything():
     """A stored value that parses but is not a mapping must not read as unchanged."""
     assert changed_releases("5", CURRENT) == list(WATCHED_RELEASES)
     assert changed_releases('["stats_player"]', CURRENT) == list(WATCHED_RELEASES)
+
+
+# ---------------------------------------------------------------------------
+# data_freshness
+# ---------------------------------------------------------------------------
+
+def _freshness_inputs():
+    # (game_id, week, team, offensive_snaps, qbr)
+    players = [
+        # NE @ SEA: both published. One SEA backup has neither, which must not
+        # make the game read as missing.
+        ("2026_01_NE_SEA", 1, "NE", 71, 57.9),
+        ("2026_01_NE_SEA", 1, "SEA", 45, 79.6),
+        ("2026_01_NE_SEA", 1, "SEA", 5, None),
+        # SF @ LA: QBR is out (SF has it), snap counts are not.
+        ("2026_01_SF_LA", 1, "SF", None, 81.5),
+        ("2026_01_SF_LA", 1, "LA", None, None),
+        # CHI @ CAR: nothing published yet.
+        ("2026_01_CHI_CAR", 1, "CHI", None, None),
+        ("2026_01_CHI_CAR", 1, "CAR", None, None),
+        # A fully caught-up week.
+        ("2026_02_BUF_MIA", 2, "BUF", 64, 70.1),
+        ("2026_02_BUF_MIA", 2, "MIA", 60, 44.0),
+    ]
+    week_rows = pl.DataFrame(
+        [(2026, "REG", w, t, s, q) for _, w, t, s, q in players],
+        schema=["season", "season_type", "week", "team_abbr", "offensive_snaps", "qbr"],
+        orient="row",
+    )
+    game_teams = pl.DataFrame(
+        sorted({(g, 2026, "REG", w, t) for g, w, t, _, _ in players}),
+        schema=["game_id", "season", "season_type", "week", "team_abbr"],
+        orient="row",
+    )
+    schedules = pl.DataFrame(
+        [
+            ("2026_01_NE_SEA", "2026-09-09", "20:20"),
+            ("2026_01_SF_LA", "2026-09-10", "20:35"),
+            ("2026_01_CHI_CAR", "2026-09-13", "13:00"),
+            ("2026_02_BUF_MIA", "2026-09-20", "13:00"),
+        ],
+        schema=["game_id", "gameday", "gametime"],
+        orient="row",
+    )
+    return week_rows, game_teams, schedules
+
+
+def _week(df, week):
+    return df.filter(pl.col("week") == week).row(0, named=True)
+
+
+def test_game_counts_as_covered_if_any_player_has_the_value():
+    """A backup with no snaps or QBR must not mark a published game as missing."""
+    wk1 = _week(data_freshness(*_freshness_inputs()), 1)
+    assert wk1["games"] == 3
+    assert wk1["games_missing_snaps"] == 2   # SF @ LA, CHI @ CAR
+    assert wk1["games_missing_qbr"] == 1     # CHI @ CAR only
+
+
+def test_latest_missing_kickoff_is_the_most_recent_missing_game_in_utc():
+    """Sunday's 1:00 PM EDT game is later than Thursday's, and is 17:00 UTC."""
+    wk1 = _week(data_freshness(*_freshness_inputs()), 1)
+    sunday = datetime(2026, 9, 13, 17, 0, tzinfo=timezone.utc)
+    assert wk1["latest_missing_snaps_kickoff"] == sunday
+    assert wk1["latest_missing_qbr_kickoff"] == sunday
+
+
+def test_caught_up_week_has_no_missing_kickoff():
+    wk2 = _week(data_freshness(*_freshness_inputs()), 2)
+    assert wk2["games_missing_snaps"] == 0
+    assert wk2["games_missing_qbr"] == 0
+    assert wk2["latest_missing_snaps_kickoff"] is None
+    assert wk2["latest_missing_qbr_kickoff"] is None

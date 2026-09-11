@@ -14,6 +14,14 @@ export const revalidate = 60;
 
 const VIEWS = ["season_REG", "season_POST", "week_REG", "week_POST"] as const;
 
+// How long after kickoff a game's missing snap counts or QBR still count as
+// "on the way". Snap counts normally land 12-15 hours after a game and QBR
+// within a few; three days leaves room for an nflverse outage. Past that, the
+// data is treated as never coming -- a handful of games genuinely never get QBR
+// (eight in 2013), and without a cutoff their seasons would carry an asterisk
+// forever.
+const PENDING_WINDOW_MS = 3 * 24 * 60 * 60 * 1000;
+
 export default async function Page({
   searchParams,
 }: {
@@ -48,6 +56,7 @@ export default async function Page({
   const rows = (data ?? []) as unknown as StatRow[];
 
   const stats = statsForView(view);
+  const pending = await loadPending(season, seasonType, week);
   const isFinal = rows.length > 0 && rows.every((r) => r.is_final);
 
   return (
@@ -83,6 +92,7 @@ export default async function Page({
         stats={stats}
         mode={mode}
         granularity={granularity}
+        pending={pending}
       />
 
       <footer className="text-xs leading-relaxed text-neutral-500">
@@ -98,6 +108,14 @@ export default async function Page({
           after that, ESPN only releases a season QBR above its own threshold,
           and snap counts arrive the day after a game
         </p>
+        {Object.keys(pending).length > 0 ? (
+          <p className="mt-1">
+            <span className="text-amber-600 dark:text-amber-400">*</span> still
+            catching up — box scores publish first, then QBR within hours and
+            snap counts around noon ET the day after a game. Hover the column for
+            details.
+          </p>
+        ) : null}
       </footer>
     </main>
   );
@@ -133,4 +151,60 @@ async function loadWeeks(seasonType: string, season: number): Promise<number[]> 
     .order("week", { ascending: true });
   if (error) throw new Error(`Could not load weeks: ${error.message}`);
   return [...new Set((data ?? []).map((r) => r.week as number))];
+}
+
+type FreshnessRow = {
+  games_missing_snaps: number;
+  games_missing_qbr: number;
+  latest_missing_snaps_kickoff: string | null;
+  latest_missing_qbr_kickoff: string | null;
+};
+
+/**
+ * Which provider-supplied stats are behind the box score for this view.
+ *
+ * Season view considers every week of the season; week view only its own week.
+ * A source is pending when a game missing its data kicked off within the window.
+ * The comparison against the clock happens here, at render time, rather than in
+ * the ingest -- once a season ends no loads run, and a flag computed at load time
+ * would stay on all offseason.
+ */
+async function loadPending(
+  season: number,
+  seasonType: string,
+  week: number | null,
+): Promise<Record<string, string>> {
+  let query = supabase
+    .from("data_freshness")
+    .select(
+      "games_missing_snaps, games_missing_qbr, latest_missing_snaps_kickoff, latest_missing_qbr_kickoff",
+    )
+    .eq("season", season)
+    .eq("season_type", seasonType);
+  if (week !== null) query = query.eq("week", week);
+
+  const { data, error } = await query;
+  if (error) throw new Error(`Could not load data freshness: ${error.message}`);
+
+  const cutoff = Date.now() - PENDING_WINDOW_MS;
+  const recent = (kickoff: string | null) =>
+    kickoff !== null && Date.parse(kickoff) >= cutoff;
+  const rows = (data ?? []) as FreshnessRow[];
+
+  const snapGames = rows
+    .filter((r) => recent(r.latest_missing_snaps_kickoff))
+    .reduce((n, r) => n + r.games_missing_snaps, 0);
+  const qbrGames = rows
+    .filter((r) => recent(r.latest_missing_qbr_kickoff))
+    .reduce((n, r) => n + r.games_missing_qbr, 0);
+
+  const plural = (n: number) => `${n} game${n === 1 ? "" : "s"}`;
+  const pending: Record<string, string> = {};
+  if (snapGames > 0) {
+    pending.snap_pct = `Snap counts not yet published for ${plural(snapGames)}. They arrive around noon ET the day after a game.`;
+  }
+  if (qbrGames > 0) {
+    pending.qbr = `ESPN QBR not yet published for ${plural(qbrGames)}.`;
+  }
+  return pending;
 }
