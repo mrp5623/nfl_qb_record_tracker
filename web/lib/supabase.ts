@@ -31,6 +31,7 @@ export type StatRow = {
   opponent_abbr?: string | null;
   result?: string | null;
   games_played?: number;
+  adjusted_games_played?: number | null;
   wins?: number | null;
   losses?: number | null;
   ties?: number | null;
@@ -38,6 +39,7 @@ export type StatRow = {
   is_final: boolean;
   sentinels: Record<string, string>;
   record_tiers: Record<string, string>;
+  adjusted_record_tiers?: Record<string, string>;
   season_percentiles?: Record<string, number>;
   week_percentiles?: Record<string, number>;
   player: { display_name: string } | null;

@@ -119,3 +119,42 @@ def test_caught_up_week_has_no_missing_kickoff():
     assert wk2["games_missing_qbr"] == 0
     assert wk2["latest_missing_snaps_kickoff"] is None
     assert wk2["latest_missing_qbr_kickoff"] is None
+
+
+# ---------------------------------------------------------------------------
+# unswap_teams
+# ---------------------------------------------------------------------------
+
+
+def _weeks(rows):
+    """(player, week, team, opponent_team)"""
+    return pl.DataFrame(
+        [(p, f"{p}", 2001, "REG", w, t, o) for p, w, t, o in rows],
+        schema=["player_id", "player_display_name", "season", "season_type", "week", "team", "opponent_team"],
+        orient="row",
+    )
+
+
+def test_opponent_recorded_as_team_is_swapped_back():
+    """Mark Brunell, 2001: JAX all season, but week 1 listed as PIT vs JAX."""
+    from ingest.load import unswap_teams
+    fixed = unswap_teams(_weeks([
+        ("BRUNELL", 1, "PIT", "JAX"),
+        ("BRUNELL", 2, "JAX", "TEN"),
+        ("BRUNELL", 3, "JAX", "CLE"),
+    ]))
+    wk1 = fixed.filter(pl.col("week") == 1).row(0, named=True)
+    assert (wk1["team"], wk1["opponent_team"]) == ("JAX", "PIT")
+
+
+def test_real_trade_is_left_alone():
+    """A contiguous stint with a new team is a trade, not a swap."""
+    from ingest.load import unswap_teams
+    rows = [
+        ("FLACCO", 1, "CLE", "CIN"), ("FLACCO", 2, "CLE", "BAL"), ("FLACCO", 3, "CLE", "GB"),
+        ("FLACCO", 7, "CIN", "PIT"), ("FLACCO", 8, "CIN", "NYJ"),
+    ]
+    fixed = unswap_teams(_weeks(rows))
+    assert fixed.select("week", "team", "opponent_team").sort("week").rows() == [
+        (w, t, o) for _, w, t, o in rows
+    ]

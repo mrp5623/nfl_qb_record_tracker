@@ -5,6 +5,7 @@ import {
   SENTINEL_STYLES,
   SENTINEL_TEXT,
   TIER_STYLES,
+  type Mode,
   type Stat,
   type Tier,
   formatValue,
@@ -15,7 +16,7 @@ import type { StatRow } from "@/lib/supabase";
 type Props = {
   rows: StatRow[];
   stats: Stat[];
-  mode: "record" | "performance";
+  mode: Mode;
   granularity: "season" | "week";
   /**
    * Stats whose provider has not caught up with the box score yet, mapped to
@@ -95,6 +96,14 @@ export default function StatTable({ rows, stats, mode, granularity, pending = {}
                 <Th onClick={() => toggleSort("games_played")} active={sortKey === "games_played"} asc={asc}>
                   G
                 </Th>
+                <Th
+                  onClick={() => toggleSort("adjusted_games_played")}
+                  active={sortKey === "adjusted_games_played"}
+                  asc={asc}
+                  title="Adjusted games played: games played × snap %. How many full games' worth of offensive snaps he was on the field for. Needs snap counts, which start in 2013."
+                >
+                  Adj G
+                </Th>
                 <Th className="text-left">Rec</Th>
               </>
             ) : (
@@ -143,6 +152,15 @@ export default function StatTable({ rows, stats, mode, granularity, pending = {}
                     <td className="px-2 py-1.5 text-center text-neutral-500">
                       {row.games_played}
                     </td>
+                    <td className="px-2 py-1.5 text-center text-neutral-500">
+                      {row.adjusted_games_played == null ? (
+                        <span className={SENTINEL_STYLES["Not Recorded"]} title="Not Recorded">
+                          {SENTINEL_TEXT["Not Recorded"]}
+                        </span>
+                      ) : (
+                        Number(row.adjusted_games_played).toFixed(1)
+                      )}
+                    </td>
                     <td className="whitespace-nowrap px-2 py-1.5 text-neutral-500">
                       {row.wins}-{row.losses}
                       {row.ties ? `-${row.ties}` : ""}
@@ -164,7 +182,11 @@ export default function StatTable({ rows, stats, mode, granularity, pending = {}
                     stat={s}
                     value={row[s.field]}
                     sentinel={row.sentinels?.[s.field]}
-                    tier={row.record_tiers?.[s.field] as Tier | undefined}
+                    tier={
+                      (mode === "adjusted" ? row.adjusted_record_tiers : row.record_tiers)?.[
+                        s.field
+                      ] as Tier | undefined
+                    }
                     percentile={percentiles[s.field]}
                     mode={mode}
                   />
@@ -220,7 +242,7 @@ function Cell({
   sentinel?: string;
   tier?: Tier;
   percentile?: number;
-  mode: "record" | "performance";
+  mode: Mode;
 }) {
   // A sentinel wins over both modes. The cell has no number to grade, and the
   // reason it is empty is more informative than any colour would be (8.1).

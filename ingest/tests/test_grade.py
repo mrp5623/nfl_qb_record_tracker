@@ -286,3 +286,51 @@ def test_cohort_of_only_unqualified_rows_yields_nulls():
     df = frame([100, 200], [False, False])
     out = grade.performance_percentiles(df, STATS["passing_yards"], PARTITION)
     assert out.null_count() == 2
+
+
+# ---------------------------------------------------------------------------
+# adjusted record mode: same thresholds, different proration divisor
+# ---------------------------------------------------------------------------
+
+ADJUSTED_VIEW = {
+    "prorate_denominator_games": 17,
+    "stats": {
+        "passing_yards": ladder(prorate="games"),   # counting: prorated
+        "passer_rating": ladder(),                  # rate: never prorated
+    },
+}
+
+
+def test_adjusted_mode_prorates_by_adjusted_games():
+    """17 games at half the snaps is measured as 8.5 games' worth.
+
+    60 yards clears only 'below' against 17 games (below = 60), but against 8.5
+    games every threshold halves and 60 clears the record bar (100 / 17 * 8.5 = 50).
+    """
+    row = {"games_played": 17, "adjusted_games_played": 8.5,
+           "passing_yards": 60, "passer_rating": 95}
+    assert grade.grade_row(row, ADJUSTED_VIEW)["passing_yards"] == "below"
+    adjusted = grade.grade_row(row, ADJUSTED_VIEW, games_key="adjusted_games_played")
+    assert adjusted["passing_yards"] == "record"
+
+
+def test_adjusted_mode_leaves_rates_unchanged():
+    """Rates are not prorated, so only the divisor for counting stats differs."""
+    row = {"games_played": 17, "adjusted_games_played": 8.5,
+           "passing_yards": 60, "passer_rating": 95}
+    record = grade.grade_row(row, ADJUSTED_VIEW)
+    adjusted = grade.grade_row(row, ADJUSTED_VIEW, games_key="adjusted_games_played")
+    assert adjusted["passer_rating"] == record["passer_rating"] == "elite"
+
+
+def test_adjusted_mode_without_snap_counts_does_not_fall_back_to_games():
+    """No snap data means no adjusted games -- the counting tier is withheld.
+
+    Silently using games_played instead would make the adjusted column identical
+    to record mode for every pre-2013 season while claiming to be adjusted.
+    """
+    row = {"games_played": 17, "adjusted_games_played": None,
+           "passing_yards": 60, "passer_rating": 95}
+    adjusted = grade.grade_row(row, ADJUSTED_VIEW, games_key="adjusted_games_played")
+    assert "passing_yards" not in adjusted
+    assert adjusted["passer_rating"] == "elite"

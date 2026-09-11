@@ -10,6 +10,9 @@ Two shapes come out of this module:
   a game joins to this to get his opponent and result, starter or not.
 * `qb_game_results` -- the same rows narrowed to the *starting* quarterback, which
   is what `games_started` and the win-loss record are built from.
+
+The schedule's starter is corrected against the box score by `correct_starters`
+before the record is built -- see it for why the raw value cannot be trusted.
 """
 
 import polars as pl
@@ -88,15 +91,82 @@ def game_team_rows(games: pl.DataFrame) -> pl.DataFrame:
     )
 
 
-def qb_game_results(games: pl.DataFrame) -> pl.DataFrame:
+def correct_starters(game_teams: pl.DataFrame, appearances: pl.DataFrame) -> pl.DataFrame:
+    """Replace a listed starter who did not play in the game.
+
+    nflverse's schedule names each team's starter (`home_qb_id`/`away_qb_id`),
+    and for a small number of games it names a quarterback with no stats at all
+    for that game: 86 team-games since 1999, 33 of them in 2024. The listing is
+    stale in both directions -- Marcus Mariota credited with five 2024 starts
+    Jayden Daniels played, Tim Boyle credited with a game Tua Tagovailoa played.
+    In 2025 it gave Tyrod Taylor four Jets games that Justin Fields and Brady Cook
+    played every snap of, turning his true 1-3 into 2-6.
+
+    The listed starter is KEPT whenever he played at all, however briefly. A
+    starter who leaves early is still the starter, and the box score cannot tell
+    that apart from a mislabel: Aaron Rodgers took four snaps in 2023 week 1
+    before tearing his Achilles, Teddy Bridgewater one in 2022 week 5. Checking
+    every "listed starter played, someone else played more" case shows these
+    are overwhelmingly real, so only the unambiguous case is corrected.
+
+    When the listed starter did not play, the start goes to whoever played the
+    most: offensive snaps where recorded (2013 on), otherwise pass attempts plus
+    carries. player_id breaks exact ties so reruns always pick the same player.
+
+    `appearances` is one row per quarterback per game, with player_id, season,
+    season_type, week, team_abbr, offensive_snaps, attempts, rushing_attempts.
+    """
+    key = ["season", "season_type", "week", "team_abbr"]
+    played = appearances.select(
+        "player_id", *key, "offensive_snaps", "attempts", "rushing_attempts"
+    )
+
+    lead = played.group_by(key).agg(
+        pl.col("player_id")
+        .sort_by(
+            [
+                pl.col("offensive_snaps").fill_null(-1),
+                pl.col("attempts").fill_null(0) + pl.col("rushing_attempts").fill_null(0),
+                pl.col("player_id"),
+            ],
+            descending=[True, True, False],
+        )
+        .first()
+        .alias("_lead")
+    )
+
+    listed_played = (
+        played.select(pl.col("player_id").alias("starter_player_id"), *key)
+        .unique()
+        .with_columns(pl.lit(True).alias("_played"))
+    )
+
+    return (
+        game_teams.join(lead, on=key, how="left")
+        .join(listed_played, on=["starter_player_id", *key], how="left")
+        .with_columns(
+            pl.when(pl.col("_played").fill_null(False))
+            .then(pl.col("starter_player_id"))
+            .otherwise(pl.coalesce(pl.col("_lead"), pl.col("starter_player_id")))
+            .alias("starter_player_id")
+        )
+        .drop("_lead", "_played")
+    )
+
+
+def qb_game_results(game_teams: pl.DataFrame) -> pl.DataFrame:
     """One row per starting quarterback per played game.
+
+    Takes `game_team_rows` output -- ideally after `correct_starters` -- rather
+    than the raw schedule, so the starter it narrows to has been checked against
+    the box score.
 
     Only starters appear, which is what makes the row count equal
     `games_started` and matches the convention that a quarterback's win-loss
     record is his record as a starter.
     """
     return (
-        game_team_rows(games)
+        game_teams
         .filter(pl.col("starter_player_id").is_not_null())
         .select(
             pl.col("starter_player_id").alias("player_id"),

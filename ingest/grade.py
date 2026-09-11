@@ -130,7 +130,10 @@ def grade_record(
 
 
 def grade_row(
-    row: dict, view_config: dict, sentinels: dict[str, str] | None = None
+    row: dict,
+    view_config: dict,
+    sentinels: dict[str, str] | None = None,
+    games_key: str = "games_played",
 ) -> dict[str, str]:
     """Record-mode tiers for every gradeable stat in one row.
 
@@ -138,10 +141,18 @@ def grade_row(
     stats that grade to None so the stored object stays small -- an absent key
     and a null value mean the same thing to the UI, and 1,621 season rows carry
     at least one sentinel.
+
+    `games_key` names the column counting stats are prorated by. Adjusted record
+    mode passes "adjusted_games_played" (games played times snap share) against
+    the SAME thresholds -- only the divisor changes, so a quarterback who played
+    17 games but half the snaps is measured as 8.5 games' worth of production.
+    Where that column is null (no snap counts: before 2013, or not yet published
+    for a recent game) every prorated tier grades to None, while rates, which
+    are never prorated, grade exactly as in record mode.
     """
     sentinels = sentinels or {}
     denominator = view_config.get("prorate_denominator_games")
-    games_played = row.get("games_played")
+    games_played = row.get(games_key)
 
     tiers: dict[str, str] = {}
     for name, stat_config in view_config["stats"].items():

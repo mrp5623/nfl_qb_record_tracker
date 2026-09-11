@@ -18,6 +18,17 @@ export type Stat = {
 
 export const STATS = statsJson as Stat[];
 
+/**
+ * How cells are coloured.
+ *
+ * `adjusted` is record mode with one change: counting stats are prorated by
+ * adjusted games played (games played x snap share) instead of games played.
+ * The thresholds are identical, so it answers "how does his production compare
+ * to history, per game's worth of snaps actually taken" -- a backup who played
+ * pieces of six games is not measured as if he played six full games.
+ */
+export type Mode = "record" | "adjusted" | "performance";
+
 export function statsForView(view: string): Stat[] {
   return STATS.filter((s) => s.views.includes(view));
 }

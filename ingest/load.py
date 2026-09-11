@@ -215,10 +215,10 @@ EXTERNAL_COLUMNS_FWD = ["qbr", "offensive_snaps", "team_offensive_snaps"]
 
 SEASON_COLUMNS = [
     "player_id", "season", "season_type", "team_abbr",
-    "games_played", "games_started", "wins", "losses", "ties",
+    "games_played", "adjusted_games_played", "games_started", "wins", "losses", "ties",
     *STAT_COLUMN_MAP.values(),
     *EXTERNAL_COLUMNS_FWD, *DERIVED_COLUMNS_FWD, "sentinels",
-    "record_tiers", "season_percentiles",
+    "record_tiers", "adjusted_record_tiers", "season_percentiles",
     "is_final", "is_qualified",
 ]
 
@@ -233,7 +233,7 @@ WEEK_COLUMNS = [
 
 # The grading columns are added after the frame is built (see add_grade_columns),
 # so the build step selects everything except them and the upsert selects the lot.
-SEASON_GRADE_COLUMNS = ["record_tiers", "season_percentiles"]
+SEASON_GRADE_COLUMNS = ["record_tiers", "adjusted_record_tiers", "season_percentiles"]
 WEEK_GRADE_COLUMNS = ["record_tiers", "week_percentiles"]
 SEASON_BUILD_COLUMNS = [c for c in SEASON_COLUMNS if c not in SEASON_GRADE_COLUMNS]
 WEEK_BUILD_COLUMNS = [c for c in WEEK_COLUMNS if c not in WEEK_GRADE_COLUMNS]
@@ -292,7 +292,65 @@ def build_season_rows(
         .join(qbr, on=["player_id", "season", "season_type"], how="left")
         .join(snaps, on=["player_id", "season", "season_type"], how="left")
     )
-    return add_derived_columns(joined).select(SEASON_BUILD_COLUMNS)
+    # Games played scaled by the share of team offensive snaps he was on the
+    # field for: 17 games at 50% of snaps is 8.5 games' worth. Null wherever
+    # snap_pct is, so adjusted grading never silently falls back to raw games.
+    return (
+        add_derived_columns(joined)
+        .with_columns(
+            (pl.col("games_played") * pl.col("snap_pct") / 100).alias("adjusted_games_played")
+        )
+        .select(SEASON_BUILD_COLUMNS)
+    )
+
+
+def unswap_teams(stats: pl.DataFrame) -> pl.DataFrame:
+    """Correct weekly rows where nflverse recorded the opponent as the player's team.
+
+    As of 2026-09 this is 20 rows, all Jacksonville 2001-2002: Mark Brunell for
+    eight weeks each season, David Garrard and Jonathan Quinn for two. Brunell's
+    2001 rows list him as PIT, TEN, CLE, BUF, CIN, BAL, GB and KC -- JAX's
+    opponents -- one week apiece.
+
+    It matters because week rows join to games on (game_id, team), and the
+    opponent is a valid side of that game. Nothing errors: the player is
+    silently filed under the other team, with the other team's result.
+
+    A swapped row has a signature a real trade cannot produce by accident: the
+    listed team is a one-week appearance, and the listed OPPONENT is the team he
+    played for all season. A traded player shows a contiguous stint with his new
+    team instead. Every correction is printed, so a future misfire -- say, a
+    quarterback traded for one game against his old team -- is visible in the log
+    rather than silently rewritten.
+    """
+    key = ["player_id", "season", "season_type"]
+    stints = stats.group_by(*key, "team").len()
+    dominant = stints.group_by(key).agg(
+        pl.col("team")
+        .sort_by([pl.col("len"), pl.col("team")], descending=[True, False])
+        .first()
+        .alias("_dominant")
+    )
+    marked = (
+        stats.join(dominant, on=key, how="left")
+        .join(stints.rename({"len": "_stint"}), on=[*key, "team"], how="left")
+    )
+    swapped = (
+        (pl.col("team") != pl.col("_dominant"))
+        & (pl.col("opponent_team") == pl.col("_dominant"))
+        & (pl.col("_stint") == 1)
+    ).fill_null(False)
+
+    fixes = marked.filter(swapped)
+    if fixes.height:
+        rows = fixes.select("player_display_name", "season", "week", "team", "opponent_team").rows()
+        print(f"warning: un-swapping team/opponent on {fixes.height} week row(s): {rows}")
+
+    # Both expressions read the ORIGINAL columns, so this is a true swap.
+    return marked.with_columns(
+        pl.when(swapped).then(pl.col("opponent_team")).otherwise(pl.col("team")).alias("team"),
+        pl.when(swapped).then(pl.col("team")).otherwise(pl.col("opponent_team")).alias("opponent_team"),
+    ).drop("_dominant", "_stint")
 
 
 def build_week_rows(
@@ -305,7 +363,7 @@ def build_week_rows(
     opponent and result too. `week` comes from the schedule side, which carries
     postseason round 1-4 instead of the era-dependent raw week number.
     """
-    renamed = _renamed_stats(stats).rename({"team": "team_abbr"})
+    renamed = _renamed_stats(unswap_teams(stats)).rename({"team": "team_abbr"})
 
     # nflverse has a small number of player-weeks with no team recorded (one, as
     # of 2026-08: Steve Bono, 1999 week 9). They cannot be joined to a game side.
@@ -538,11 +596,16 @@ def add_grade_columns(
         }
 
         tiers_json: list[str] = []
+        adjusted_json: list[str] = []
         pct_json: list[str] = []
         for i, row in enumerate(part.iter_rows(named=True)):
             raw = row.get("sentinels") or "{}"
             sentinels = json.loads(raw) if isinstance(raw, str) else raw
             tiers_json.append(json.dumps(grade.grade_row(row, view, sentinels)))
+            if granularity == "season":
+                adjusted_json.append(json.dumps(grade.grade_row(
+                    row, view, sentinels, games_key="adjusted_games_played"
+                )))
             # A sentinel cell gets neither a tier nor a percentile (parent 8.1).
             pct_json.append(
                 json.dumps(
@@ -554,12 +617,10 @@ def add_grade_columns(
                 )
             )
 
-        graded.append(
-            part.with_columns(
-                pl.Series("record_tiers", tiers_json),
-                pl.Series(pct_column, pct_json),
-            )
-        )
+        columns = [pl.Series("record_tiers", tiers_json), pl.Series(pct_column, pct_json)]
+        if granularity == "season":
+            columns.append(pl.Series("adjusted_record_tiers", adjusted_json))
+        graded.append(part.with_columns(columns))
 
     return pl.concat(graded, how="diagonal_relaxed")
 
@@ -833,7 +894,6 @@ if __name__ == "__main__":
     schedules = sources.fetch_schedules(True)
     final = final_seasons(schedules)
     game_teams = schedule.game_team_rows(schedules)
-    records = schedule.season_records(schedule.qb_game_results(schedules))
 
     qbr_season = qbr_season_lookup(sources.fetch_qbr("season"), players)
     qbr_week = qbr_week_lookup(sources.fetch_qbr("week"), players)
@@ -846,8 +906,12 @@ if __name__ == "__main__":
     )
     week_stats = sources.fetch_player_stats(True, "week")
 
-    season_rows = build_season_rows(season_stats, records, final, qbr_season, snap_season)
+    # Week rows first: the starter correction needs to know who actually played,
+    # and the season record is built from the corrected starters.
     week_rows = build_week_rows(week_stats, game_teams, final, qbr_week, snap_game)
+    game_teams = schedule.correct_starters(game_teams, week_rows)
+    records = schedule.season_records(schedule.qb_game_results(game_teams))
+    season_rows = build_season_rows(season_stats, records, final, qbr_season, snap_season)
 
     thresholds_doc = json.loads(
         (Path(__file__).parents[1] / "config" / "thresholds_v2025.json").read_text(

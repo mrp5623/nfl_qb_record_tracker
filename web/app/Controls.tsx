@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useTransition } from "react";
-import { TIERS, TIER_LABELS, TIER_STYLES } from "@/lib/tiers";
+import { TIERS, TIER_LABELS, TIER_STYLES, type Mode } from "@/lib/tiers";
 
 type Props = {
   seasons: number[];
@@ -10,7 +10,7 @@ type Props = {
   season: number;
   view: string;
   week: number | null;
-  mode: "record" | "performance";
+  mode: Mode;
 };
 
 export default function Controls({ seasons, weeks, season, view, week, mode }: Props) {
@@ -82,7 +82,10 @@ export default function Controls({ seasons, weeks, season, view, week, mode }: P
 
       <Field label="Grading">
         <div className="flex overflow-hidden rounded-md border border-[var(--border)]">
-          {(["record", "performance"] as const).map((m) => (
+          {(view === "season_REG"
+            ? (["record", "adjusted", "performance"] as const)
+            : (["record", "performance"] as const)
+          ).map((m) => (
             <button
               key={m}
               onClick={() => setParam({ mode: m })}
@@ -94,7 +97,9 @@ export default function Controls({ seasons, weeks, season, view, week, mode }: P
               title={
                 m === "record"
                   ? "Fixed thresholds from every season since 1999. Counting stats are prorated to games played, so mid-season this reads as on-pace."
-                  : "Percentile within this season or week only."
+                  : m === "adjusted"
+                    ? "Same thresholds as Record, but counting stats are prorated by adjusted games played (games × snap %), so time on the field counts instead of games appeared in. Needs snap counts, which start in 2013."
+                    : "Percentile within this season or week only."
               }
             >
               {m}
@@ -104,7 +109,7 @@ export default function Controls({ seasons, weeks, season, view, week, mode }: P
       </Field>
 
       <div className="ml-auto flex items-center gap-2 text-xs">
-        {mode === "record" ? (
+        {mode !== "performance" ? (
           TIERS.map((t) => (
             <span
               key={t}
