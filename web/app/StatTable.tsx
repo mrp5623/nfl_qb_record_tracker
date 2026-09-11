@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   SENTINEL_STYLES,
   SENTINEL_TEXT,
@@ -35,6 +35,28 @@ type Props = {
 export default function StatTable({ rows, stats, mode, granularity, pending = {} }: Props) {
   const [sortKey, setSortKey] = useState<string>("passing_yards");
   const [asc, setAsc] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // The header is `sticky top-0`, but sticky positions against the nearest
+  // scroll container, and the horizontal scroll wrapper is one. Without a
+  // height limit that wrapper never scrolls vertically, so the header just
+  // scrolled away with the page. Capping the wrapper at the viewport space
+  // below the controls makes it scroll in both directions: the header stays
+  // put while rows scroll, and the controls and the horizontal scrollbar stay
+  // on screen. The offset is measured because the controls wrap to more lines
+  // on narrow screens.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const measure = () => {
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      el.style.setProperty("--table-top", `${Math.round(top)}px`);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(document.body);
+    return () => observer.disconnect();
+  }, [rows.length]);
 
   const percentileKey =
     granularity === "season" ? "season_percentiles" : "week_percentiles";
@@ -78,15 +100,23 @@ export default function StatTable({ rows, stats, mode, granularity, pending = {}
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-800">
+    <div
+      ref={scrollRef}
+      className="overflow-auto overscroll-x-contain rounded-lg border border-neutral-200 dark:border-neutral-800"
+      // A floor keeps phones, where the controls take most of the screen, from
+      // shrinking the table to a few rows.
+      style={{ maxHeight: "max(24rem, calc(100dvh - var(--table-top, 10rem) - 1rem))" }}
+    >
       <table className="w-full border-collapse text-sm tabular-nums">
-        <thead className="sticky top-0 z-10 bg-neutral-100 dark:bg-neutral-900">
+        {/* z-20 so the sticky Player cells in the body (z-10, later in the
+            DOM) slide under the header rather than over it. */}
+        <thead className="sticky top-0 z-20 bg-neutral-100 dark:bg-neutral-900">
           <tr>
             <Th
               onClick={() => toggleSort("player")}
               active={sortKey === "player"}
               asc={asc}
-              className="sticky left-0 z-20 bg-neutral-100 text-left dark:bg-neutral-900"
+              className="sticky left-0 z-30 bg-neutral-100 text-left dark:bg-neutral-900"
             >
               Player
             </Th>
@@ -219,7 +249,10 @@ function Th({
     <th
       onClick={onClick}
       title={title}
-      className={`px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-400 ${
+      // The divider is an inset shadow rather than a border: collapsed table
+      // borders belong to the table, not the cell, and stay behind when the
+      // header sticks.
+      className={`px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-600 shadow-[inset_0_-1px_0_var(--border)] dark:text-neutral-400 ${
         onClick ? "cursor-pointer select-none hover:text-neutral-900 dark:hover:text-neutral-100" : ""
       } ${active ? "text-neutral-900 underline decoration-2 underline-offset-4 dark:text-neutral-100" : ""} ${className}`}
     >
