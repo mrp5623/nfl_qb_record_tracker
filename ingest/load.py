@@ -20,7 +20,7 @@ import os
 import urllib.request
 import sys
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 import polars as pl
 import psycopg
@@ -95,10 +95,14 @@ insert into ingest_log (
 values (%s, %s, %s, %s, %s, %s, %s, %s)
 """
 
+# Latest by id, not completed_at. id is assigned at insert, so it is the true
+# order runs finished in regardless of whose clock recorded the time. Ordering
+# by completed_at once made a local run sort four hours behind a GitHub Actions
+# run that finished earlier, and the guard read the stale row.
 GET_SOURCE_TIMESTAMP_SQL = """
 select source_timestamp from ingest_log
 where status = 'success' and source_timestamp is not null
-order by completed_at desc nulls last limit 1
+order by id desc limit 1
 """
 
 NFLVERSE_TIMESTAMP_URL = (
@@ -689,19 +693,52 @@ def nflverse_timestamp(release: str = "stats_player", timeout: float = 30.0) -> 
     return data["last_updated"]
 
 
+# Every nflverse release a refresh reads from that publishes on its own
+# schedule. Guarding on stats_player alone meant a snap count or QBR update sat
+# unloaded until the next stats rebuild happened to trigger a run -- Thursday
+# night snap counts, published Friday noon, would have waited until Sunday.
+WATCHED_RELEASES: tuple[str, ...] = ("stats_player", "snap_counts", "espn_data")
+
+
+def nflverse_timestamps() -> dict[str, str]:
+    """The current build timestamp of every watched release."""
+    return {release: nflverse_timestamp(release) for release in WATCHED_RELEASES}
+
+
+def changed_releases(previous: str | None, current: dict[str, str]) -> list[str]:
+    """Which watched releases have a different build than the last successful run.
+
+    `previous` is the raw `source_timestamp` stored in ingest_log. Runs from
+    before this guard stored a bare stats_player string rather than a JSON
+    object; that does not parse as an object, so every release reads as changed
+    and the run proceeds. The failure mode to avoid is the opposite one -- a
+    stored value misread as "unchanged", which would skip loads indefinitely
+    while the site went stale.
+    """
+    try:
+        seen = json.loads(previous) if previous else {}
+    except json.JSONDecodeError:
+        seen = {}
+    if not isinstance(seen, dict):
+        seen = {}
+    return [r for r in WATCHED_RELEASES if seen.get(r) != current.get(r)]
+
+
 if __name__ == "__main__":
     from ingest import schedule, sources
 
-    started = datetime.now()
-    timestamp = nflverse_timestamp()
+    started = datetime.now(timezone.utc)
+    timestamps = nflverse_timestamps()
 
     if "--if-changed" in sys.argv:
         with get_connection() as conn:
-            if timestamp == last_ingested_timestamp(conn):
-                print(f"Stats unchanged since {timestamp}. Skipping.")
-                raise SystemExit(0)
-
-
+            previous = last_ingested_timestamp(conn)
+        changed = changed_releases(previous, timestamps)
+        if not changed:
+            print("No watched nflverse release has changed. Skipping.")
+            raise SystemExit(0)
+        for release in changed:
+            print(f"{release} updated: now built {timestamps[release]}")
 
     players = sources.fetch_players()
     schedules = sources.fetch_schedules(True)
@@ -739,6 +776,6 @@ if __name__ == "__main__":
         write_ingest_log(
             conn, job="full_load", season=None, rows_written=n_season + n_week,
             status="success", error=None, started_at=started,
-            completed_at=datetime.now(), source_timestamp= timestamp
+            completed_at=datetime.now(timezone.utc), source_timestamp=json.dumps(timestamps, sort_keys=True)
         )
     print(f"season rows: {n_season}, week rows: {n_week}")
