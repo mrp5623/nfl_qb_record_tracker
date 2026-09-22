@@ -227,14 +227,14 @@ WEEK_COLUMNS = [
     "team_abbr", "opponent_abbr", "result",
     *STAT_COLUMN_MAP.values(),
     *EXTERNAL_COLUMNS_FWD, *DERIVED_COLUMNS_FWD, "sentinels",
-    "record_tiers", "week_percentiles",
+    "record_tiers", "adjusted_record_tiers", "week_percentiles",
     "is_final", "is_qualified",
 ]
 
 # The grading columns are added after the frame is built (see add_grade_columns),
 # so the build step selects everything except them and the upsert selects the lot.
 SEASON_GRADE_COLUMNS = ["record_tiers", "adjusted_record_tiers", "season_percentiles"]
-WEEK_GRADE_COLUMNS = ["record_tiers", "week_percentiles"]
+WEEK_GRADE_COLUMNS = ["record_tiers", "adjusted_record_tiers", "week_percentiles"]
 SEASON_BUILD_COLUMNS = [c for c in SEASON_COLUMNS if c not in SEASON_GRADE_COLUMNS]
 WEEK_BUILD_COLUMNS = [c for c in WEEK_COLUMNS if c not in WEEK_GRADE_COLUMNS]
 
@@ -588,6 +588,9 @@ def add_grade_columns(
         if part.height == 0:
             continue
         view = thresholds["views"][f"{granularity}_{season_type}"]
+        # Weekly adjusted grading needs counting stats prorated, which the
+        # weekly thresholds never are; see grade.per_snap_view.
+        adjusted_view = grade.per_snap_view(view) if granularity == "week" else view
 
         percentiles = {
             name: grade.performance_percentiles(part, STATS[name], partition)
@@ -602,10 +605,16 @@ def add_grade_columns(
             raw = row.get("sentinels") or "{}"
             sentinels = json.loads(raw) if isinstance(raw, str) else raw
             tiers_json.append(json.dumps(grade.grade_row(row, view, sentinels)))
-            if granularity == "season":
-                adjusted_json.append(json.dumps(grade.grade_row(
-                    row, view, sentinels, games_key="adjusted_games_played"
-                )))
+            if granularity == "week":
+                # One game, scaled by the share of snaps he played: 96% of the
+                # snaps is 0.96 games. Null snap_pct stays null, withholding
+                # the counting tiers rather than grading them as a full game.
+                snap_pct = row.get("snap_pct")
+                row = {**row, "adjusted_games_played":
+                       None if snap_pct is None else snap_pct / 100}
+            adjusted_json.append(json.dumps(grade.grade_row(
+                row, adjusted_view, sentinels, games_key="adjusted_games_played"
+            )))
             # A sentinel cell gets neither a tier nor a percentile (parent 8.1).
             pct_json.append(
                 json.dumps(
@@ -617,9 +626,11 @@ def add_grade_columns(
                 )
             )
 
-        columns = [pl.Series("record_tiers", tiers_json), pl.Series(pct_column, pct_json)]
-        if granularity == "season":
-            columns.append(pl.Series("adjusted_record_tiers", adjusted_json))
+        columns = [
+            pl.Series("record_tiers", tiers_json),
+            pl.Series("adjusted_record_tiers", adjusted_json),
+            pl.Series(pct_column, pct_json),
+        ]
         graded.append(part.with_columns(columns))
 
     return pl.concat(graded, how="diagonal_relaxed")

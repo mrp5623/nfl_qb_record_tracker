@@ -1,5 +1,5 @@
 import { supabase, type StatRow } from "@/lib/supabase";
-import { statsForView, type Mode } from "@/lib/tiers";
+import { hasAdjusted, statsForView, type Mode } from "@/lib/tiers";
 import Controls from "./Controls";
 import StatTable from "./StatTable";
 
@@ -31,15 +31,15 @@ export default async function Page({
   const view = pickView(params.view);
   const granularity = view.startsWith("season") ? "season" : "week";
   const seasonType = view.endsWith("REG") ? "REG" : "POST";
-  // Adjusted records only differ from record mode where counting stats are
-  // prorated, which is the regular-season season view alone. Anywhere else it
-  // would render identically, so it falls back to record instead of looking
-  // like a toggle that does nothing. The URL keeps mode=adjusted, so switching
-  // back to that view restores it.
+  // Adjusted records scale counting stats by snaps played: by adjusted games
+  // in the regular season, by snap share in a single game. Postseason totals
+  // are never prorated, so there it would render identically to record mode
+  // and falls back instead of looking like a toggle that does nothing. The URL
+  // keeps mode=adjusted, so switching back to a supported view restores it.
   const mode: Mode =
     params.mode === "performance"
       ? "performance"
-      : params.mode === "adjusted" && view === "season_REG"
+      : params.mode === "adjusted" && hasAdjusted(view)
         ? "adjusted"
         : "record";
   const table = granularity === "season" ? "player_season" : "player_week";

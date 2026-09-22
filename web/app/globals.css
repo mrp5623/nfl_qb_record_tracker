@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 :root {
+  /* Tells the browser which palette native controls should use. Without it
+     Safari draws <select> in its light style on the dark theme: a white box
+     with the theme's pale text on it. */
+  color-scheme: light dark;
   --background: #fbfaf8;
   --foreground: #1a1a19;
   --surface: #ffffff;

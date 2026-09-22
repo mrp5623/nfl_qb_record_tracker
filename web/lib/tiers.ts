@@ -29,6 +29,15 @@ export const STATS = statsJson as Stat[];
  */
 export type Mode = "record" | "adjusted" | "performance";
 
+/**
+ * Whether adjusted records mean anything in this view. Adjusted mode prorates
+ * counting stats by snaps played; postseason totals are never prorated, so
+ * there it would be identical to record mode.
+ */
+export function hasAdjusted(view: string): boolean {
+  return view !== "season_POST";
+}
+
 export function statsForView(view: string): Stat[] {
   return STATS.filter((s) => s.views.includes(view));
 }

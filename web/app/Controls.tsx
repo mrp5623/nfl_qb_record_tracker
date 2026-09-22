@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useTransition } from "react";
-import { TIERS, TIER_LABELS, TIER_STYLES, type Mode } from "@/lib/tiers";
+import { TIERS, TIER_LABELS, TIER_STYLES, hasAdjusted, type Mode } from "@/lib/tiers";
 
 type Props = {
   seasons: number[];
@@ -82,7 +82,7 @@ export default function Controls({ seasons, weeks, season, view, week, mode }: P
 
       <Field label="Grading">
         <div className="flex overflow-hidden rounded-md border border-[var(--border)]">
-          {(view === "season_REG"
+          {(hasAdjusted(view)
             ? (["record", "adjusted", "performance"] as const)
             : (["record", "performance"] as const)
           ).map((m) => (
@@ -98,7 +98,9 @@ export default function Controls({ seasons, weeks, season, view, week, mode }: P
                 m === "record"
                   ? "Fixed thresholds from every season since 1999. Counting stats are prorated to games played, so mid-season this reads as on-pace."
                   : m === "adjusted"
-                    ? "Same thresholds as Record, but counting stats are prorated by adjusted games played (games × snap %), so time on the field counts instead of games appeared in. Needs snap counts, which start in 2013."
+                    ? isWeekly
+                      ? "Same thresholds as Record, but counting stats are scaled by the share of snaps played: at 50% of snaps, 150 yards grades like 300 in a full game. Needs snap counts, which start in 2013."
+                      : "Same thresholds as Record, but counting stats are prorated by adjusted games played (games × snap %), so time on the field counts instead of games appeared in. Needs snap counts, which start in 2013."
                     : "Percentile within this season or week only."
               }
             >
@@ -142,7 +144,7 @@ export default function Controls({ seasons, weeks, season, view, week, mode }: P
 }
 
 const selectClass =
-  "rounded-md border border-[var(--border)] bg-[var(--surface)] px-2 py-1.5 text-sm";
+  "rounded-md border border-[var(--border)] bg-[var(--surface)] px-2 py-1.5 text-sm text-[var(--foreground)]";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (

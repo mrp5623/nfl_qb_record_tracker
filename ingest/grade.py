@@ -24,7 +24,7 @@ from typing import Any, Callable
 
 import polars as pl
 
-from ingest.registry import STATS, Direction, Stat, Tier
+from ingest.registry import STATS, Direction, Prorate, Stat, Tier
 
 # Threshold operators, as they appear in the generated JSON.
 #
@@ -162,6 +162,26 @@ def grade_row(
         if tier is not None:
             tiers[name] = str(tier)
     return tiers
+
+
+def per_snap_view(view_config: dict) -> dict:
+    """A weekly view whose counting stats are prorated by snap share.
+
+    Weekly thresholds describe one full game, so nothing in a weekly view is
+    prorated and a quarterback who played a quarter is measured against a whole
+    game's yards. This returns a copy with the SAME thresholds, but every
+    counting stat's tiers marked `prorate: games` against a denominator of one.
+    Graded with `games_key="adjusted_games_played"` holding the snap share as a
+    fraction (0.96 for 96% of snaps), each threshold becomes threshold x 0.96 --
+    the same as dividing his numbers by 0.96. Rates are left untouched.
+    """
+    stats = {}
+    for name, config in view_config["stats"].items():
+        stat = STATS.get(name)
+        if stat is not None and stat.prorate is Prorate.GAMES:
+            config = {**config, "tiers": [{**t, "prorate": "games"} for t in config["tiers"]]}
+        stats[name] = config
+    return {**view_config, "stats": stats, "prorate_denominator_games": 1}
 
 
 def performance_percentiles(

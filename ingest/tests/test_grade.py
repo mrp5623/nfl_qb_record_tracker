@@ -334,3 +334,36 @@ def test_adjusted_mode_without_snap_counts_does_not_fall_back_to_games():
     adjusted = grade.grade_row(row, ADJUSTED_VIEW, games_key="adjusted_games_played")
     assert "passing_yards" not in adjusted
     assert adjusted["passer_rating"] == "elite"
+
+
+WEEK_VIEW = {
+    "prorate_denominator_games": None,
+    "stats": {
+        "passing_yards": ladder(),   # weekly thresholds are never prorated
+        "passer_rating": ladder(),
+    },
+}
+
+
+def test_weekly_adjusted_divides_by_snap_share():
+    """Half the snaps: 50 yards is graded like 100 yards in a full game.
+
+    A regression here is invisible -- the adjusted column would just quietly
+    match record mode, which is exactly what it looked like before this existed.
+    """
+    row = {"adjusted_games_played": 0.5, "passing_yards": 50, "passer_rating": 95}
+    assert grade.grade_row(row, WEEK_VIEW)["passing_yards"] == "poor"
+    adjusted = grade.grade_row(
+        row, grade.per_snap_view(WEEK_VIEW), games_key="adjusted_games_played")
+    assert adjusted["passing_yards"] == "record"
+    assert adjusted["passer_rating"] == "elite"   # rates unchanged
+
+
+def test_weekly_adjusted_does_not_touch_the_thresholds(real_thresholds):
+    """Only the proration flag changes; every threshold value stays as shipped."""
+    view = real_thresholds["views"]["week_REG"]
+    adjusted = grade.per_snap_view(view)
+    for name, config in view["stats"].items():
+        assert [t["threshold"] for t in adjusted["stats"][name]["tiers"]] == \
+               [t["threshold"] for t in config["tiers"]]
+    assert all(t["prorate"] == "none" for c in view["stats"].values() for t in c["tiers"])

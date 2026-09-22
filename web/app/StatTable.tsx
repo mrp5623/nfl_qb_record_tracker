@@ -188,7 +188,7 @@ export default function StatTable({ rows, stats, mode, granularity, pending = {}
                           {SENTINEL_TEXT["Not Recorded"]}
                         </span>
                       ) : (
-                        Number(row.adjusted_games_played).toFixed(1)
+                        Number(row.adjusted_games_played).toFixed(2)
                       )}
                     </td>
                     <td className="whitespace-nowrap px-2 py-1.5 text-neutral-500">
@@ -251,13 +251,23 @@ function Th({
       title={title}
       // The divider is an inset shadow rather than a border: collapsed table
       // borders belong to the table, not the cell, and stay behind when the
-      // header sticks.
-      className={`px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-600 shadow-[inset_0_-1px_0_var(--border)] dark:text-neutral-400 ${
+      // header sticks. nowrap keeps two-word headers ("SCK YDS") on one line;
+      // Safari otherwise broke them, and which ones broke changed with the sort.
+      className={`whitespace-nowrap px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-600 shadow-[inset_0_-1px_0_var(--border)] dark:text-neutral-400 ${
         onClick ? "cursor-pointer select-none hover:text-neutral-900 dark:hover:text-neutral-100" : ""
       } ${active ? "text-neutral-900 underline decoration-2 underline-offset-4 dark:text-neutral-100" : ""} ${className}`}
     >
-      {children}
-      {active ? <span className="ml-0.5">{asc ? "▲" : "▼"}</span> : null}
+      {/* The sort arrow hangs off the label into the cell's padding instead of
+          taking up width. Inline, it widened whichever column was sorted, so
+          every re-sort reflowed the whole header. */}
+      <span className="relative">
+        {children}
+        {active ? (
+          <span aria-hidden className="absolute left-full top-1/2 ml-px -translate-y-1/2 text-[8px] no-underline">
+            {asc ? "▲" : "▼"}
+          </span>
+        ) : null}
+      </span>
     </th>
   );
 }
