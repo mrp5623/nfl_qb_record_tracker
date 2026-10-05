@@ -67,7 +67,7 @@ export default function Controls({ seasons, weeks, season, view, week, mode }: P
       {isWeekly && weeks.length > 0 ? (
         <Field label="Week">
           <select
-            value={week ?? weeks[0]}
+            value={week ?? weeks.at(-1)}
             onChange={(e) => setParam({ week: e.target.value })}
             className={selectClass}
           >

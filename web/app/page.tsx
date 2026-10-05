@@ -52,7 +52,13 @@ export default async function Page({
   // separately -- hardcoding any of that would silently drop games.
   const weeks =
     granularity === "week" ? await loadWeeks(seasonType, season) : [];
-  const week = granularity === "week" ? Number(params.week) || weeks[0] : null;
+  // Default to the newest week that has rows, not week 1. The week list comes
+  // from the data, so its last entry is the most recent week anything has been
+  // published for -- in season that is the week just played, and once a season
+  // is over it is its final week. `?? null` covers a season type with no rows
+  // at all, such as a postseason that has not started.
+  const week =
+    granularity === "week" ? (Number(params.week) || weeks.at(-1)) ?? null : null;
 
   let query = supabase
     .from(table)
