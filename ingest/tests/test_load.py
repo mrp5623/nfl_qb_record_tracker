@@ -10,7 +10,12 @@ from datetime import datetime, timezone
 
 import polars as pl
 
-from ingest.load import WATCHED_RELEASES, changed_releases, data_freshness
+from ingest.load import (
+    WATCHED_RELEASES,
+    changed_releases,
+    data_freshness,
+    snap_season_totals,
+)
 
 CURRENT = {
     "stats_player": "2026-09-11 10:03:41 EDT",
@@ -158,3 +163,49 @@ def test_real_trade_is_left_alone():
     assert fixed.select("week", "team", "opponent_team").sort("week").rows() == [
         (w, t, o) for _, w, t, o in rows
     ]
+
+
+# ---------------------------------------------------------------------------
+# Season snap totals
+# ---------------------------------------------------------------------------
+
+
+def _snap_games(rows):
+    """(week, offensive_snaps, team_offensive_snaps) for one quarterback."""
+    return pl.DataFrame(
+        [("KEENUM", 2026, "REG", w, s, t) for w, s, t in rows],
+        schema=["player_id", "season", "season_type", "week",
+                "offensive_snaps", "team_offensive_snaps"],
+        orient="row",
+    )
+
+
+def _stat_weeks(weeks):
+    return pl.DataFrame(
+        [("KEENUM", 2026, "REG", w) for w in weeks],
+        schema=["player_id", "season", "season_type", "week"],
+        orient="row",
+    )
+
+
+def test_a_snap_without_a_stat_line_does_not_count_against_the_season():
+    """Case Keenum, 2026: every snap of week 3, then one kneel in week 4.
+
+    The kneel produces no stat line, so nflverse credits him with one game. Left
+    in, it also drags that game's whole team total into the denominator and the
+    season reads 73 of 165 snaps -- 44% for a quarterback who never left the
+    field in the only game he is credited with. Nothing about 44% looks wrong on
+    the page, which is why it needs an assertion.
+    """
+    totals = snap_season_totals(
+        _snap_games([(3, 72, 72), (4, 1, 93)]), _stat_weeks([3])
+    ).row(0, named=True)
+    assert (totals["offensive_snaps"], totals["team_offensive_snaps"]) == (72, 72)
+
+
+def test_games_he_played_are_all_still_counted():
+    """The filter must not drop real appearances: a relief outing has a stat line."""
+    totals = snap_season_totals(
+        _snap_games([(3, 72, 72), (4, 20, 80)]), _stat_weeks([3, 4])
+    ).row(0, named=True)
+    assert (totals["offensive_snaps"], totals["team_offensive_snaps"]) == (92, 152)

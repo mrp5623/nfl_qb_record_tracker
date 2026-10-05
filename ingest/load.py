@@ -778,16 +778,32 @@ def snap_rows(
     )
 
 
-def snap_season_totals(snap_rows_df: pl.DataFrame) -> pl.DataFrame:
-    """Season snap totals per quarterback.
+def snap_season_totals(
+    snap_rows_df: pl.DataFrame, week_rows: pl.DataFrame
+) -> pl.DataFrame:
+    """Season snap totals per quarterback, over the games he is credited with.
 
     Sums both sides so snap_pct can be recomputed from the totals. Averaging the
     weekly percentages would weight a 5-snap relief appearance the same as a
     70-snap start.
+
+    Only games that produced a weekly stat line count, because that is what
+    `games_played` counts, and adjusted games multiplies the two together. A
+    quarterback can take a snap without recording a statistic -- a kneel-down to
+    end a half, a wildcat decoy -- and nflverse credits him with no game for it.
+    Counting his one kneel would also pull that game's entire team total into the
+    denominator: Case Keenum's 2026 read 73 of 165 snaps, 44%, for a season in
+    which he played every snap of his only game and knelt once in another.
     """
-    return snap_rows_df.group_by(["player_id", "season", "season_type"]).agg(
-        pl.col("offensive_snaps").sum(),
-        pl.col("team_offensive_snaps").sum(),
+    played = week_rows.select("player_id", "season", "season_type", "week").unique()
+    return (
+        snap_rows_df
+        .join(played, on=["player_id", "season", "season_type", "week"], how="inner")
+        .group_by(["player_id", "season", "season_type"])
+        .agg(
+            pl.col("offensive_snaps").sum(),
+            pl.col("team_offensive_snaps").sum(),
+        )
     )
 
 
@@ -909,7 +925,6 @@ if __name__ == "__main__":
     qbr_season = qbr_season_lookup(sources.fetch_qbr("season"), players)
     qbr_week = qbr_week_lookup(sources.fetch_qbr("week"), players)
     snap_game = snap_rows(sources.fetch_snap_counts(True), players, game_teams)
-    snap_season = snap_season_totals(snap_game)
 
     season_stats = pl.concat(
         [sources.fetch_player_stats(True, "reg"), sources.fetch_player_stats(True, "post")],
@@ -920,6 +935,9 @@ if __name__ == "__main__":
     # Week rows first: the starter correction needs to know who actually played,
     # and the season record is built from the corrected starters.
     week_rows = build_week_rows(week_stats, game_teams, final, qbr_week, snap_game)
+    # Season snap totals are restricted to the games in week_rows, so they are
+    # built from it rather than straight from the snap counts.
+    snap_season = snap_season_totals(snap_game, week_rows)
     game_teams = schedule.correct_starters(game_teams, week_rows)
     records = schedule.season_records(schedule.qb_game_results(game_teams))
     season_rows = build_season_rows(season_stats, records, final, qbr_season, snap_season)
